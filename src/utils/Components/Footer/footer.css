@@ -1,0 +1,37 @@
+.main-footer {
+    bottom:0;
+    position: absolute;
+    width:100%;
+    justify-content: center;
+}
+.row{
+    display: flex;
+    align-items: stretch;
+    background-color: black;
+    color: whitesmoke;
+    justify-content: flex-start
+}
+.row3{
+    display: flex;
+    align-items: stretch;
+    background-color:#242B2E;
+    color: whitesmoke;
+    position: relative;
+    width:100%;
+    justify-content: center;
+}
+.footer-element{
+    padding: 1%
+}
+.icon{
+    margin-left: auto;
+    padding: 10px
+}
+.footer-icon{
+    padding: 10px;
+    color:whitesmoke;
+}
+a{
+    color:whitesmoke;
+    text-decoration: none;
+}

@@ -1,20 +1,20 @@
 .main-footer {
     bottom:0;
-    position: absolute;
+    position: relative;
     width:100%;
     justify-content: center;
 }
-.row{
+.row1{
     display: flex;
     align-items: stretch;
-    background-color: black;
+    background-color: #120E43;
     color: whitesmoke;
     justify-content: flex-start
 }
-.row3{
+.row2{
     display: flex;
     align-items: stretch;
-    background-color:#242B2E;
+    background-color:rgb(36, 31, 83);
     color: whitesmoke;
     position: relative;
     width:100%;

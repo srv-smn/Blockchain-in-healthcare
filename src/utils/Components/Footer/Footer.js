@@ -7,7 +7,7 @@ const Footer = () => {
         <footer>
             <div className="main-footer">
              <div className="container">
-              <div className="row">
+              <div className="row1">
                 <div className="footer-element"><a href="#">Home</a></div>
                 <div className="footer-element"><a href="">About</a></div>
                 <div className="footer-element"><a href="">Help</a></div>
@@ -17,7 +17,7 @@ const Footer = () => {
                 <div className="footer-icon"><a href=""><AiFillLinkedin size="25px" /></a></div>
               </div>  
                 
-              <div className="row3">&#169; 2020 Blockchain-in-healthcare. All Rights Reserved</div>
+              <div className="row2">&#169; 2020 Blockchain-in-healthcare. All Rights Reserved</div>
              </div>
             </div>  
         </footer>

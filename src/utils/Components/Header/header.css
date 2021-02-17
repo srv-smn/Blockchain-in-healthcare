@@ -1,0 +1,21 @@
+.row{
+    display: flex;
+    align-items: stretch;
+    background-color: #120E43;
+    color: whitesmoke;
+    justify-content: flex-start;
+}
+.header-element{
+    padding: 1%;
+    margin: 10px
+
+}
+.search{
+    display: flex;
+    margin-left: auto;
+    padding: 1%;
+    margin-top: 10px
+}
+.search-icon{
+    margin-top:30px
+}

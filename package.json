@@ -7,6 +7,8 @@
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
+    "fs-extra": "^9.0.1",
+    "path": "^0.12.7",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-bootstrap-sidebar": "0.0.1",
@@ -16,9 +18,13 @@
     "react-pro-sidebar": "^0.6.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+<<<<<<< HEAD
     "react-sidebar": "^3.0.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
+=======
+    "solc": "^0.7.0",
+>>>>>>> e69ac3d6d5ddac83e13de534366f6687f65e8f9a
     "web-vitals": "^0.2.4"
   },
   "scripts": {

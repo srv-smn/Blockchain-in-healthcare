@@ -7,21 +7,21 @@
 .row1{
     display: flex;
     align-items: stretch;
-    background-color: #120E43;
-    color: whitesmoke;
+    background-color: black;
     justify-content: flex-start
 }
 .row2{
     display: flex;
     align-items: stretch;
-    background-color:rgb(36, 31, 83);
+    background-color:rgb(36, 30, 30);
     color: whitesmoke;
     position: relative;
     width:100%;
     justify-content: center;
 }
 .footer-element{
-    padding: 1%
+    padding: 1%;
+    color: whitesmoke
 }
 .icon{
     margin-left: auto;
@@ -32,6 +32,5 @@
     color:whitesmoke;
 }
 a{
-    color:whitesmoke;
     text-decoration: none;
 }

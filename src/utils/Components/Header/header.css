@@ -1,14 +1,13 @@
 .row{
     display: flex;
     align-items: stretch;
-    background-color: #120E43;
+    background-color: black;
     color: whitesmoke;
     justify-content: flex-start;
 }
 .header-element{
     padding: 1%;
-    margin: 10px
-
+    margin: 10px;
 }
 .search{
     display: flex;
@@ -17,5 +16,6 @@
     margin-top: 10px
 }
 .search-icon{
-    margin-top:30px
+    margin-top:30px;
+    margin-right: 10px;
 }

@@ -10,6 +10,7 @@ class Login extends Component {
     return(
       <div className={Classes.center} style={{ backgroundImage: `url(${Back})` }}>
         <form>
+
         <button>
       <div className={Classes.container}>
         <img src={Doctor} alt="Doctor" className={Classes.image} />
@@ -18,9 +19,10 @@ class Login extends Component {
         </div>
       </div>
       </button>
+
       <button>
       <div className={Classes.container}>
-        <img src={Patient} alt="Doctor" className={Classes.image} />
+        <img src={Patient} alt="Patient" className={Classes.image} />
         <div className={Classes.overlay}>
           <div className={Classes.text}>Patient</div>
         </div>
@@ -29,7 +31,7 @@ class Login extends Component {
 
       <button>
       <div className={Classes.container}>
-        <img src={Admin} alt="Doctor" className={Classes.image} />
+        <img src={Admin} alt="Admin" className={Classes.image} />
         <div className={Classes.overlay}>
           <div className={Classes.text}>Admin</div>
         </div>

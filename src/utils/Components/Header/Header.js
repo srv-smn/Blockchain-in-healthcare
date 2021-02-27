@@ -7,7 +7,7 @@ const Header = () => {
         <header>
         <div className="container">    
             <div className="row">
-                <div className="header-element"><a href="#">Heathcare Login</a></div>
+                <div className="header-element"><h3>Heathcare Login</h3></div>
                 <div className="search"><input type="text" placeholder='Search'></input></div>    
                 <div className="search-icon"><AiOutlineSearch size="20px"/></div>     
             </div>

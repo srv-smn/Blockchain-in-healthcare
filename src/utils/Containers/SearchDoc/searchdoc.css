@@ -1,0 +1,27 @@
+.search-doc-main{
+    padding: 50px 150px;
+    text-align: center;
+    background-color: rgb(212, 244, 252);
+    height: 100vh;
+}
+.search-container{
+    margin-top: 50px;
+    padding: 100px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px rgb(207, 206, 206);
+}
+.search-doc-main h1{
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+.search-doc-main h3{
+    padding: 10px;
+    margin-bottom: 20px;
+    color: rgb(77, 76, 76)
+}
+Table{
+    margin-top: 30px;
+    padding: 5px;
+}

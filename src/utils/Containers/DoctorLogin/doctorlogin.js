@@ -1,6 +1,6 @@
 import React from 'react'
-import './userreg.css'
-import { Form, Input, TextArea, Button, Select } from 'semantic-ui-react'
+import './doctorlogin.css'
+import { Form, Input, Button, Select } from 'semantic-ui-react'
 
 const genderOptions = [
   { key: 'm', text: 'Male', value: 'male' },
@@ -18,9 +18,11 @@ const bloodGroup = [
   {key: 'O', text: 'O-', value: 'O-'},
 ]
 
-const FormExampleFieldControlId = () => (
+const DoctorLogin = () => (
   <div className="main-reg-form">
-  <Form className="reg-form" >
+  <Form className="reg-form">
+    <h2>Doctor Registration</h2>
+    <hr />
     <Form.Group widths='equal'>
       <Form.Field
         id='form-input-control-first-name'
@@ -37,7 +39,7 @@ const FormExampleFieldControlId = () => (
         required
       />
       </Form.Group>
-      <Form.Group>
+      <Form.Group widths='equal'>
       <Form.Field
         control={Select}
         options={genderOptions}
@@ -45,12 +47,7 @@ const FormExampleFieldControlId = () => (
         placeholder='Gender'
         search
         searchInput={{ id: 'form-select-control-gender' }}
-        width={5}
       />
-      <div className="dob">
-      <label>Date of Birth</label>
-        <input type="date" placeholder='dd-mm-yyyy'/>
-      </div>
       <Form.Field
         control={Select}
         options={bloodGroup}
@@ -58,8 +55,12 @@ const FormExampleFieldControlId = () => (
         placeholder='Blood Group'
         search
         searchInput={{ id: 'form-select-control-gender' }}
-        width={5}/>
+       />
       </Form.Group>
+      <div className="dob">
+      <label>Date of Birth</label>
+        <input type="date" placeholder='dd-mm-yyyy'/>
+      </div>
     <Form.Field
       id='form-input-control-error-email'
       control={Input}
@@ -73,6 +74,14 @@ const FormExampleFieldControlId = () => (
       control={Input}
       label='Mobile no.'
       placeholder='Mobile no.'
+      required
+      width={10}
+    />
+    <Form.Field
+      id='identity'
+      control={Input}
+      label='Adhar Card No.'
+      placeholder='Adhar Card No.'
       required
       width={10}
     />
@@ -119,4 +128,4 @@ const FormExampleFieldControlId = () => (
    </div>
 )
 
-export default FormExampleFieldControlId;
+export default DoctorLogin;

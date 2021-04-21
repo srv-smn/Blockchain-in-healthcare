@@ -1,33 +1,36 @@
 import React from "react"
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './footer.css'
-import { AiFillGithub,AiFillFacebook,AiFillLinkedin } from "react-icons/ai";
-import {Route,Link} from 'react-router-dom'
-import './../../Containers/LoginPage/UserReg'
+import { FaPhoneSquare,FaEnvelope,FaHome,FaFacebook,FaTwitter,FaLinkedin } from "react-icons/fa";
+import './../../Containers/UserReg/UserReg'
 
 const Footer = () => {
     return( 
-        <footer>
-            <div className="main-footer">
-             <div className="container">
-              <div className="row1">
-                <div className="footer-element">
-                    <Link to="home">Home</Link>
+        <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Features</h4>
+                    <p>Find Doctor</p>
+                    <p>Privacy Policy</p>
                 </div>
-                <div className="footer-element"><a href="">About</a></div>
-                <div className="footer-element"><a href="">Help</a></div>
-                <div className="footer-element"><a href="">Contact</a></div>
-                <div className="footer-element">
-                    <Link to="newform">New Form</Link>
+                <div class="col-md-4">
+                        <h4>Quick Contact</h4>
+                        <p><FaPhoneSquare />&nbsp; +91 0123456789</p>
+                        <p><FaEnvelope />&nbsp; abc@gmail.com</p>
+                        <p><FaHome />&nbsp; xyz Road, ABC City</p>
                 </div>
-                <div className="icon"><a href=""><AiFillFacebook size="25px"/></a></div>
-                <div className="footer-icon"><a href=""><AiFillGithub size="25px"/></a></div>
-                <div className="footer-icon"><a href=""><AiFillLinkedin size="25px" /></a></div>
-              </div>  
-                
-              <div className="row2">&#169; 2020 Blockchain-in-healthcare. All Rights Reserved</div>
-             </div>
-            </div>  
-        </footer>
+                <div class="col-md-4">
+                        <h4>Follow us on</h4>
+                        <p><FaFacebook />&nbsp; HealthCare</p>
+                        <p><FaLinkedin />&nbsp; HealthCare.com</p>
+                        <p><FaTwitter />&nbsp; twitter.com</p>
+                </div>  
+            </div> 
+        </div>
+        <hr />
+        <p className="copyright">&#169; 2021 Blockchain-in-healthcare. All Rights Reserved</p>
+    </div>
     )
   }
   

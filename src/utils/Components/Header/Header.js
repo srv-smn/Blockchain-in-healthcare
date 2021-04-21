@@ -1,19 +1,33 @@
-import React from "react";
-import { AiOutlineSearch } from "react-icons/ai";
-import './header.css'
+ import React from "react";
+ import {Button,Form,FormControl,NavDropdown,Nav,Navbar} from 'react-bootstrap'
+ import './header.css'
 
-const Header = () => {
-    return (
-        <header>
-        <div className="container">    
-            <div className="row">
-                <div className="header-element"><h3>Heathcare Login</h3></div>
-                <div className="search"><input type="text" placeholder='Search'></input></div>    
-                <div className="search-icon"><AiOutlineSearch size="20px"/></div>     
-            </div>
+import 'bootstrap/dist/css/bootstrap.min.css';
+ const Header = () => {
+     return (
+        <div className="header">
+        <Navbar variant="dark" expand="lg">
+        <Navbar.Brand href="#home">HealthCare</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto nav-items">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#about">About Us</Nav.Link>
+            <Nav.Link href="#contact">Contact Us</Nav.Link>
+            <NavDropdown title="Features" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Find Doctor</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+            </NavDropdown>
+            </Nav>
+            <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-success">Search</Button>
+            </Form>
+        </Navbar.Collapse>
+        </Navbar>
         </div>
-        </header>
-    );
-};
+     );
+ };
 
-export default Header;
+ export default Header;
+

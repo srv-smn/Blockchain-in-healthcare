@@ -5,7 +5,7 @@ import Header from './utils/Components/Header/Header';
 import LoginPage from './utils/Containers/LoginPage/UserReg';
 import FormExampleFieldControlId from './utils/Containers/LoginPage/UserReg';
 import {Route} from 'react-router-dom'
-import NavBar from './utils/Components/NavBar/NavBar';
+import NavBar from './utils/Components/NavBar/Navbar';
 
 
 function App() {

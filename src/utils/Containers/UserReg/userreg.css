@@ -1,0 +1,35 @@
+.card-main{
+    background-color: rgb(212, 244, 252);
+    height: 100vh;
+    padding: 100px
+}
+.cardbox{
+    padding: 100px;
+    width: 100%;
+    box-shadow: 0 0 10px 2px rgb(231, 229, 229);
+    border-radius: 2em;
+    position: relative;
+}
+.doctorcardbox{
+    background-image: url('../../../assets/doctorlogin.jpg');
+    background-position: 10px
+    
+}
+.patientcardbox{
+    background-image: url('../../../assets/patientlogin.jpg');
+    background-position: initial
+
+}
+.cardbox:hover{
+    transform: scale(1.1)
+}
+.cardbox h3{
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 30px;
+    padding-bottom: 30px;
+    color: black;
+    text-shadow: -2px 2px 2px rgb(201, 199, 199)
+    
+}

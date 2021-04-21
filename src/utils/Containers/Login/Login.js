@@ -1,4 +1,6 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom'
+
 import Classes from './Login.module.css'
 import Doctor from './../../../assets/doctor.png'
 import Patient from './../../../assets/patient.png'
@@ -33,7 +35,9 @@ class Login extends Component {
       <div className={Classes.container}>
         <img src={Admin} alt="Admin" className={Classes.image} />
         <div className={Classes.overlay}>
-          <div className={Classes.text}>Admin</div>
+          <Link to="newform">
+            <div className={Classes.text}>Admin</div>
+          </Link>  
         </div>
       </div>
       </button>

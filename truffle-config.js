@@ -17,12 +17,18 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
+require('dotenv').config({ path: './.env' });
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const Mnemonic = process.env.MNEMONIC;
+const AccountIndex = 0;
+console.log(process.env.MNEMONIC);
+console.log(process.env.RINKEBY);
+console.log(process.env.ROPSTEN);
+console.log(process.env.ETHERSCAN_API);
 
 module.exports = {
   /**
@@ -72,26 +78,44 @@ module.exports = {
     // network_id: 2111,   // This network is yours, in the cloud.
     // production: true    // Treats this network as if it was a public net. (default: false)
     // }
+    rinkeby: {
+      provider() {
+        return new HDWalletProvider(Mnemonic, process.env.RINKEBY);
+      },
+      network_id: 4,
+      gas: 4000000,
+    },
+    ropsten: {
+      provider() {
+        return new HDWalletProvider(Mnemonic, process.env.ROPSTEN);
+      },
+      network_id: 3,
+      gas: 4000000,
+      // confirmations: 2,
+      timeoutBlocks: 500,
+      // skipDryRun: true,
+    },
   },
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
     // timeout: 100000
   },
+  contracts_build_directory: './src/abis/',
 
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.7.0",    // Fetch exact version from solc-bin (default: truffle's version)
-     // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      settings: {          // See the solidity docs for advice about optimization and evmVersion
-       optimizer: {
-         enabled: false,
-         runs: 200
-       },
-      // evmVersion: "byzantium"
-      }
-    }
+      version: '0.7.0', // Fetch exact version from solc-bin (default: truffle's version)
+      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+      settings: {
+        // See the solidity docs for advice about optimization and evmVersion
+        optimizer: {
+          enabled: false,
+          runs: 200,
+        },
+      },
+    },
   },
 
   // Truffle DB is currently disabled by default; to enable it, change enabled: false to enabled: true
@@ -101,6 +125,20 @@ module.exports = {
   // $ truffle migrate --reset --compile-all
 
   db: {
-    enabled: false
-  }
+    enabled: false,
+  },
+  plugins: ['truffle-plugin-verify'],
+  api_keys: {
+    etherscan: process.env.ETHERSCAN_API,
+  },
 };
+
+// truffle compile
+// truffle migrate --network rinkeby
+// truffle run verify Casino --network rinkeby
+
+// url reffered to verify contract on rinkeby
+// https://kalis.me/verify-truffle-smart-contracts-etherscan/
+
+// Things to ask --
+// how to deploy it on to mumbai matic or eos

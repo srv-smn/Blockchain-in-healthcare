@@ -1,8 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {FormControl,Button,InputGroup,Table} from 'react-bootstrap'
 import './searchpatient.css'
 
 const SearchPatient= () => {
+    
+    const [searchpat, setSearchpat] = useState({
+        cityofpatient: ""
+    })
+
+    const [data,setData] = useState([])
+
+    const handleInput = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setSearchpat({...searchpat, [name]: value})
+    }
+    
+    const handleSubmit = (e) =>{
+        alert('Searching...')
+        e.preventDefault();
+        const patient = {...searchpat, id:new Date()}
+        setData([...data, patient])
+        console.log(data)
+
+        setSearchpat({cityofpatient: ""})
+    }    
+
     return (
         <div className="search-patient-main">
             <div className="search-container">
@@ -12,9 +35,12 @@ const SearchPatient= () => {
                     <FormControl
                     placeholder="Enter a City"
                     aria-label="city name"
+                    name='cityofpatient'
+                    value = {searchpat.cityofpatient}
+                    onChange = {handleInput}
                 />
                 <InputGroup.Append>
-                    <Button variant="success">Search</Button>
+                    <Button variant="success" onClick={handleSubmit}>Search</Button>
                 </InputGroup.Append>
                 </InputGroup>
                 <Table striped bordered hover>

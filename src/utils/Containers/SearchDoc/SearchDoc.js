@@ -1,30 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {FormControl,Button,InputGroup,Table} from 'react-bootstrap'
 import './searchdoc.css'
 
-const SearchDoc= () => {
+class SearchDoc extends React.Component{
 
-    const [searchdoc, setSearchdoc] = useState({
-        cityofdoc: ""
-    })
-
-    const [data,setData] = useState([])
-
-    const handleInput = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        setSearchdoc({...searchdoc, [name]: value})
-    }
+    constructor(props) {
+        super(props);
+        this.state = {value: ''};
     
-    const handleSubmit = (e) =>{
-        alert('Searching...')
-        e.preventDefault();
-        const doctor = {...searchdoc, id:new Date()}
-        setData([...data, doctor])
-        console.log(data)
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+    
+      handleChange(event) {
+        this.setState({value: event.target.value});
+      }
+    
+      handleSubmit(event) {
+        alert('searching');
+        console.log(this.state)
+        event.preventDefault();
+        this.setState({value: ''});
+      }
 
-        setSearchdoc({cityofdoc: ""})
-    }    
+    render(){
 
     return (
         <div className="search-doc-main">
@@ -33,14 +32,13 @@ const SearchDoc= () => {
                 <h3>Search a doctor in your location</h3>
                 <InputGroup className="mb-4">
                     <FormControl
-                    name='cityofdoc'
                     placeholder="Enter a City"
                     aria-label="city name"
-                    value = {searchdoc.cityofdoc}
-                    onChange = {handleInput}
+                    value = {this.state.value}
+                    onChange = {this.handleChange}
                 />
                 <InputGroup.Append>
-                    <Button variant="success" onClick={handleSubmit}>Search</Button>
+                    <Button variant="success" onClick={this.handleSubmit}>Search</Button>
                 </InputGroup.Append>
                 </InputGroup>
                 <Table striped bordered hover>
@@ -67,5 +65,5 @@ const SearchDoc= () => {
         </div>
     )
 }
-
+}
 export default SearchDoc;

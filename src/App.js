@@ -5,14 +5,10 @@ import DoctorLogin from './utils/Containers/DoctorLogin/doctorlogin';
 import PatientLogin from './utils/Containers/PatientLogin/patientlogin';
 import CardExampleFluid from './utils/Containers/UserReg/UserReg';
 import {Route} from 'react-router-dom'
-<<<<<<< HEAD
-import NavBar from './utils/Components/NavBar/Navbar';
 
-=======
 import './App.css';
 import SearchDoc from './utils/Containers/SearchDoc/SearchDoc';
 import SearchPatient from './utils/Containers/SearchPatient/SearchPatient';
->>>>>>> 3a014cb52fb25aa5755ee5fd0c282a92b41f9102
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './doctorlogin.css'
 import { Form, Input, Select } from 'semantic-ui-react'
 
@@ -18,61 +18,65 @@ const bloodGroup = [
   {key: 'O-', text: 'O-', value: 'O-'},
 ]
 
-const DoctorLogin = () => {
+class DoctorLogin extends React.Component{
 
-  const [doctRegister , setDoctRegister] = useState({
-    firstname : "",
-    lastname : "",
-    gender : '',
-    bloodgrp : "",
-    dob : "",
-    email: "",
-    mobno : "",
-    identity : "",
-    address : "",
-    zip: "",
-    state: "",
-    country: "",
-  })
+ constructor(props) {
+   super(props);
+   this.state = {
+     firstname : "",
+   lastname : "",
+   gender : '',
+   bloodgrp : "",
+   dob : "",
+   email: "",
+   mobno : "",
+   identity : "",
+   address : "",
+   zip: "",
+   state: "",
+   country: "",
+   };
 
-  const [record,setRecord] = useState([])
+   this.handleChange = this.handleChange.bind(this);
+   this.handleSubmit = this.handleSubmit.bind(this);
+ }
 
-  const handleInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+ handleChange(event) {
+   const target = event.target;
+   const value = target.value;
+   const name = target.name;
 
-    
-    setDoctRegister({...doctRegister, [name]: value})
-  }
+   this.setState({
+    [name]: value
+  });
+ }
 
-  const handleSubmit = (e) =>{
-    alert('Form Submitted')
-    e.preventDefault();
+ handleSubmit(event) {
+  event.preventDefault();
+   alert('A name was submitted: ' + this.state.firstname);
+   console.log(this.state)
+   this.setState({
+     firstname : "",
+   lastname : "",
+   gender : '',
+   bloodgrp : "",
+   dob : "",
+   email: "",
+   mobno : "",
+   identity : "",
+   address : "",
+   zip: "",
+   state: "",
+   country: "",
+   });
+   
+ }
 
-    const addedData = {...doctRegister, id:new Date()}
-    setRecord([...record, addedData])
-    console.log(record)
 
-     setDoctRegister({
-       firstname : "",
-     lastname : "",
-     gender : '',
-     bloodgrp : "",
-     dob : "",
-     email: "",
-     mobno : "",
-     identity : "",
-     address : "",
-     zip: "",
-     state: "",
-     country: "",
-     })
-  }
-
- 
+ render(){
     return(
       <div className="main-reg-form">
-      <Form className="reg-form" action=''>
+      <Form className="reg-form" action='' onSubmit={this.handleSubmit}>
         <h2>Doctor Registration</h2>
         <hr />
         <Form.Group widths='equal'>
@@ -82,8 +86,8 @@ const DoctorLogin = () => {
             control={Input}
             label='First name'
             placeholder='First name'
-            value = {doctRegister.firstname}
-            onChange = {handleInput}
+            value = {this.state.firstname}
+            onChange = {this.handleChange}
             required
           />
           <Form.Field
@@ -92,8 +96,8 @@ const DoctorLogin = () => {
             control={Input}
             label='Last name'
             placeholder='Last name'
-            value = {doctRegister.lastname}
-            onChange = {handleInput}
+            value = {this.state.lastname}
+            onChange = {this.handleChange}
             required
           />
           </Form.Group>
@@ -103,8 +107,8 @@ const DoctorLogin = () => {
             control={Select}
             options={genderOptions}
             label={{ children: 'Gender', htmlFor: 'form-select-control-gender' }}
-            value = {doctRegister.gender}
-            onChange = {handleInput}
+            value = {this.state.gender}
+            onChange = {this.handleChange}
             placeholder='Gender'
             search
             searchInput={{ id: 'form-select-control-gender' }}
@@ -114,8 +118,8 @@ const DoctorLogin = () => {
             control={Select}
             options={bloodGroup}
             label={{ children: 'Blood Group', htmlFor: 'form-select-control-gender' }}
-            value = {doctRegister.bloodgrp}
-            onChange = {handleInput}
+            value = {this.state.bloodgrp}
+            onChange = {this.handleChange}
             placeholder='Blood Group'
             search
             searchInput={{ id: 'form-select-control-gender' }}
@@ -125,11 +129,11 @@ const DoctorLogin = () => {
           <label>Date of Birth</label>
             <input
              id='dob'
-             name="dob"
+            name="dob"
              type="date" 
              placeholder='dd-mm-yyyy'
-             value = {doctRegister.dob}
-             onChange = {handleInput}/>
+             value = {this.state.dob}
+            onChange = {this.handleChange}/>
           </div>
         <Form.Field
           id='form-input-control-error-email'
@@ -137,8 +141,8 @@ const DoctorLogin = () => {
           control={Input}
           label='Email'
           placeholder='joe@example.com'
-          value = {doctRegister.email}
-          onChange = {handleInput}
+          value = {this.state.email}
+            onChange = {this.handleChange}
           width={10}
           required
         />
@@ -148,8 +152,8 @@ const DoctorLogin = () => {
           control={Input}
           label='Mobile no.'
           placeholder='Mobile no.'
-          value = {doctRegister.mobno}
-          onChange = {handleInput}
+          value = {this.state.mobno}
+            onChange = {this.handleChange}
           required
           width={10}
         />
@@ -158,21 +162,20 @@ const DoctorLogin = () => {
           name='identity'
           control={Input}
           label='Identity No.'
-          placeholder='Identity No.'
-          value = {doctRegister.identity}
-          onChange = {handleInput}
+          placeholder='Identity no.'
+          value = {this.state.identity}
+            onChange = {this.handleChange}
           required
           width={10}
         />
-        
-        <Form.Field
+       <Form.Field
           id='address'
           name='address'
           control={Input}
           label='Address'
           placeholder='Address'
-          value = {doctRegister.address}
-          onChange = {handleInput}
+          value = {this.state.address}
+            onChange = {this.handleChange}
           required
         />
         <Form.Group>
@@ -182,8 +185,8 @@ const DoctorLogin = () => {
           control={Input}
           label='Zip Code'
           placeholder='Zip Code'
-          value = {doctRegister.zip}
-          onChange = {handleInput}
+          value = {this.state.zip}
+            onChange = {this.handleChange}
           required
         />
         <Form.Field
@@ -192,28 +195,27 @@ const DoctorLogin = () => {
           control={Input}
           label='State'
           placeholder='State'
-          value = {doctRegister.state}
-          onChange = {handleInput}
-          required
-        />
-        <Form.Field
-          id='Country'
-          name='country'
-          control={Input}
-          label='Country'
-          placeholder='Country'
-          value = {doctRegister.country}
-          onChange = {handleInput}
-          required
-        />
-        </Form.Group>
-        <br />
-        
-        <input type="submit" value="Submit" onClick={handleSubmit}/>
+          value = {this.state.state}
+            onChange = {this.handleChange}
+         required
+       />
+       <Form.Field
+         id='Country'
+         name='country'
+         control={Input}
+         label='Country'
+         placeholder='Country'
+         value = {this.state.country}
+            onChange = {this.handleChange}
+         required
+       />
+       </Form.Group>
+       <br />
+       <input type="submit" value="Submit"/>
 
-      </Form>
-      </div>
-    )
+     </Form>
+     </div>
+   )
 }
-
+}
 export default DoctorLogin;

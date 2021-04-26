@@ -1,46 +1,44 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {FormControl,Button,InputGroup,Table} from 'react-bootstrap'
 import './searchpatient.css'
 
-const SearchPatient= () => {
+class SearchPatient extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {value: ''};
     
-    const [searchpat, setSearchpat] = useState({
-        cityofpatient: ""
-    })
-
-    const [data,setData] = useState([])
-
-    const handleInput = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        setSearchpat({...searchpat, [name]: value})
-    }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
     
-    const handleSubmit = (e) =>{
-        alert('Searching...')
-        e.preventDefault();
-        const patient = {...searchpat, id:new Date()}
-        setData([...data, patient])
-        console.log(data)
+      handleChange(event) {
+        this.setState({value: event.target.value});
+      }
+    
+      handleSubmit(event) {
+        alert('searching');
+        console.log(this.state)
+        event.preventDefault();
+        this.setState({value: ''});
+      }
 
-        setSearchpat({cityofpatient: ""})
-    }    
+    render(){
 
     return (
         <div className="search-patient-main">
             <div className="search-container">
                 <h1>Find a Patient</h1>
-                <h3>Search a patient in your location</h3>
+                <h3>Search a Patient in your location</h3>
                 <InputGroup className="mb-4">
                     <FormControl
                     placeholder="Enter a City"
                     aria-label="city name"
-                    name='cityofpatient'
-                    value = {searchpat.cityofpatient}
-                    onChange = {handleInput}
+                    value = {this.state.value}
+                    onChange = {this.handleChange}
                 />
                 <InputGroup.Append>
-                    <Button variant="success" onClick={handleSubmit}>Search</Button>
+                    <Button variant="success" onClick={this.handleSubmit}>Search</Button>
                 </InputGroup.Append>
                 </InputGroup>
                 <Table striped bordered hover>
@@ -67,5 +65,5 @@ const SearchPatient= () => {
         </div>
     )
 }
-
+}
 export default SearchPatient;

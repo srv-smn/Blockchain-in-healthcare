@@ -5,11 +5,6 @@ import DoctorLogin from './utils/Containers/DoctorLogin/doctorlogin';
 import PatientLogin from './utils/Containers/PatientLogin/patientlogin';
 import CardExampleFluid from './utils/Containers/UserReg/UserReg';
 import {Route} from 'react-router-dom'
-<<<<<<< HEAD
-import NavBar from './utils/Components/NavBar/Navbar';
-=======
-
->>>>>>> c905ea8e897a0747e090bc331d59ab34151870ff
 import './App.css';
 import SearchDoc from './utils/Containers/SearchDoc/SearchDoc';
 import SearchPatient from './utils/Containers/SearchPatient/SearchPatient';

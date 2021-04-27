@@ -2,7 +2,29 @@ import React from 'react';
 import {FormControl,Button,InputGroup,Table} from 'react-bootstrap'
 import './searchdoc.css'
 
-const SearchDoc= () => {
+class SearchDoc extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {value: ''};
+    
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+    
+      handleChange(event) {
+        this.setState({value: event.target.value});
+      }
+    
+      handleSubmit(event) {
+        alert('searching');
+        console.log(this.state)
+        event.preventDefault();
+        this.setState({value: ''});
+      }
+
+    render(){
+
     return (
         <div className="search-doc-main">
             <div className="search-container">
@@ -12,9 +34,11 @@ const SearchDoc= () => {
                     <FormControl
                     placeholder="Enter a City"
                     aria-label="city name"
+                    value = {this.state.value}
+                    onChange = {this.handleChange}
                 />
                 <InputGroup.Append>
-                    <Button variant="success">Search</Button>
+                    <Button variant="success" onClick={this.handleSubmit}>Search</Button>
                 </InputGroup.Append>
                 </InputGroup>
                 <Table striped bordered hover>
@@ -41,5 +65,5 @@ const SearchDoc= () => {
         </div>
     )
 }
-
+}
 export default SearchDoc;

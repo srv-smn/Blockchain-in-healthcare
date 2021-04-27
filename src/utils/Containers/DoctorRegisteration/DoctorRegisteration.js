@@ -1,6 +1,8 @@
 import React from 'react'
 import './doctorregisteration.css'
 import { Form, Input } from 'semantic-ui-react'
+import web3 from '../../../ethereum/web3'
+import Admin from '../../../ethereum/Admin'
 
 class DoctorRegisteration extends React.Component{
 
@@ -44,10 +46,20 @@ class DoctorRegisteration extends React.Component{
 }
 
 
- handleSubmit(event) {
+ async handleSubmit(event) {
   event.preventDefault();
-   alert('A name was submitted: ' + this.state.name);
    console.log(this.state)
+   const accounts = await web3.eth.getAccounts(); 
+   
+   await Admin.methods.addDoctor(
+     this.state.name,
+     this.state.adharno,
+     this.state.mobno,
+     this.state.blockchainaddress,
+     this.state.identity
+   ).send({
+    from: accounts[0]
+   })
    this.setState({
    name:"",
    selectBloodgrp : "",

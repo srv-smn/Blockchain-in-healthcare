@@ -1,5 +1,4 @@
 .main-reg-form{
-    background-color:white; 
     height: 100%;
     padding: 50px;
 }
@@ -39,3 +38,8 @@
 label{
     font-family: Arial, Helvetica, sans-serif
 }
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    
+  }

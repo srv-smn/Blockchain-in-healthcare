@@ -1,0 +1,55 @@
+.history-main{
+    height: 100vh;
+    background-color: #ebf8fc;
+    padding: 100px;
+}
+.doc-card{
+    margin-left: 25px !important;
+    margin-bottom: 40px !important;
+    border-radius: 5px;
+    border: none
+}
+.doc-detail-1{
+    background-color: #7de2fc !important;
+    background-image: linear-gradient(315deg, #7de2fc 0%, #1ebbe2 74%) !important;
+    width: 100%;
+    height: 150px; 
+    box-shadow: 0 0 10px 1px #e6e5e5 !important;
+}
+.doc-detail-2{
+    background-color: #fce622 !important;
+    background-image: linear-gradient(315deg, #eef867 0%, #fce622 74%) !important;
+    width: 100%;
+    height: 150px;
+    box-shadow: 0 0 10px 1px #e6e5e5 !important;
+}
+.doc-detail-3{
+    background-color: #fa3c3c !important;
+    background-image: linear-gradient(315deg, #fa3c3c 0%, #e60606 74%) !important;
+    width: 100%;
+    height: 150px;
+    box-shadow: 0 0 10px 1px #e5e6e6 !important;
+}
+.doc-card-content {
+    margin-top: 60px;
+    font-size: 20px
+}
+.faicons{
+    margin-top: 40px
+}
+.btn-history{
+    background-color: #15cc15;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+.btn-history:hover{
+    background-color: #0d8a0d;
+}
+.greet-doc{
+    text-align: left;
+    margin-left: 12px;
+    margin-bottom: 30px;
+    font-size: 40px
+}

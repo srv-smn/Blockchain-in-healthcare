@@ -1,35 +1,19 @@
  import React from 'react'
- import './patientlogin.css'
- import { Form, Input, Select } from 'semantic-ui-react'
+ import './patientregisteration.css'
+ import { Form, Input } from 'semantic-ui-react'
 
- const genderOptions = [
-   { key: 'm', text: 'Male', value: 'male' },
-   { key: 'f', text: 'Female', value: 'female' },
-   { key: 'o', text: 'Other', value: 'other' },
- ]
- const bloodGroup = [
-   {key: 'A+', text: 'A+', value: 'A+'},
-   {key: 'A-', text: 'A-', value: 'A-'},
-   {key: 'B+', text: 'B+', value: 'B+'},
-   {key: 'B-', text: 'B-', value: 'B-'},
-   {key: 'AB+', text: 'AB+', value: 'AB+'},
-   {key: 'AB-', text: 'AB-', value: 'AB-'},
-   {key: 'O+', text: 'O+', value: 'O+'},
-   {key: 'O-', text: 'O-', value: 'O-'},
- ]
-
-class PatientLogin extends React.Component{
+class PatientRegisteration extends React.Component{
 
   constructor(props) {
     super(props);
     this.state = {
-      firstname : "",
-    lastname : "",
-    gender : '',
-    bloodgrp : "",
+    name : "",
+    selectBloodgrp : "",
     dob : "",
     email: "",
     mobno : "",
+    adharno: "",
+    blockchainaddress: "",
     address : "",
     zip: "",
     state: "",
@@ -38,6 +22,7 @@ class PatientLogin extends React.Component{
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDropdownChange = this.handleDropdownChange.bind(this);
   }
 
   handleChange(event) {
@@ -50,18 +35,24 @@ class PatientLogin extends React.Component{
     });
   }
 
+  handleDropdownChange(e) {
+    this.setState({ 
+      selectBloodgrp: e.target.value,
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-     alert('A name was submitted: ' + this.state.firstname);
+     alert('A name was submitted: ' + this.state.name);
      console.log(this.state)
      this.setState({
-       firstname : "",
-     lastname : "",
-     gender : '',
-     bloodgrp : "",
+     name : "",
+     selectBloodgrp : "",
      dob : "",
      email: "",
      mobno : "",
+     adharno: "",
+     blockchainaddress: "",
      address : "",
      zip: "",
      state: "",
@@ -76,62 +67,46 @@ class PatientLogin extends React.Component{
        <Form className="reg-form" action='' onSubmit={this.handleSubmit}>
          <h2>Patient Registration</h2>
          <hr />
-         <Form.Group widths='equal'>
+         <Form>
            <Form.Field
-             id='form-input-control-first-name'
-             name="firstname"
+             id='form-input-control-name'
+             name="name"
              control={Input}
-             label='First name'
-             placeholder='First name'
-             value = {this.state.firstname}
+             label='Name'
+             placeholder='Full Name'
+             value = {this.state.name}
              onChange = {this.handleChange}
              required
            />
-           <Form.Field
-             id='form-input-control-last-name'
-             name='lastname'
-             control={Input}
-             label='Last name'
-             placeholder='Last name'
-             value = {this.state.lastname}
-             onChange = {this.handleChange}
-             required
-           />
-           </Form.Group>
-           <Form.Group widths='equal'>
-           <Form.Field
-             name="gender"
-             control={Select}
-             options={genderOptions}
-             label={{ children: 'Gender', htmlFor: 'form-select-control-gender' }}
-             value = {this.state.gender}
-             onChange = {this.handleChange}
-             placeholder='Gender'
-             search
-             searchInput={{ id: 'form-select-control-gender' }}
-           />
-           <Form.Field
-             name="bloodgrp"
-             control={Select}
-             options={bloodGroup}
-             label={{ children: 'Blood Group', htmlFor: 'form-select-control-gender' }}
-             value = {this.state.bloodgrp}
-             onChange = {this.handleChange}
-             placeholder='Blood Group'
-             search
-             searchInput={{ id: 'form-select-control-gender' }}
-           />
-           </Form.Group>
-           <div className="dob">
-           <label>Date of Birth</label>
-             <input
-              id='dob'
-             name="dob"
-              type="date" 
-              placeholder='dd-mm-yyyy'
-              value = {this.state.dob}
-             onChange = {this.handleChange}/>
-           </div>
+           </Form>
+           <Form.Group width='equals'>
+          <label className='fieldcss'>
+            Blood Group
+            <select required id="dropdown-2" onChange={this.handleDropdownChange}>
+              <option value="N/A">N/A</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB-</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </label>   
+          
+          <div className="fieldcss">
+          <label>Date of Birth
+            <input
+             id='dob'
+            name="dob"
+             type="date" 
+             placeholder='dd-mm-yyyy'
+             value = {this.state.dob}
+            onChange = {this.handleChange}/>
+            </label>
+          </div>
+        </Form.Group>
          <Form.Field
            id='form-input-control-error-email'
            name="email"
@@ -154,6 +129,28 @@ class PatientLogin extends React.Component{
            required
            width={10}
          />
+         <Form.Field
+           id='adharno'
+           name='adharno'
+           control={Input}
+           label='Adhar no.'
+           placeholder='Adhar no.'
+           value = {this.state.adharno}
+             onChange = {this.handleChange}
+           required
+           width={10}
+         />
+         <Form.Field
+          id='blockchainaddress'
+          name='blockchainaddress'
+          control={Input}
+          label='Blockchain Address'
+          placeholder='Blockchain Address'
+          value = {this.state.blockchainaddress}
+            onChange = {this.handleChange}
+          required
+          width={10}
+        />
        
         <Form.Field
            id='address'
@@ -198,11 +195,11 @@ class PatientLogin extends React.Component{
         />
         </Form.Group>
         <br />
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Submit" className='btn-submit'/>
 
       </Form>
       </div>
     )
 }
 }
-export default PatientLogin;
+export default PatientRegisteration;

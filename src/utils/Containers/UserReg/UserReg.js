@@ -10,7 +10,7 @@ const CardExampleFluid=()=>{
         <div className="row">
           
           <div className="col-md-6">
-          <Link to="doctorlogin">
+          <Link to="doctorregisteration">
           <div className="cardbox doctorcardbox">
             <h3>Doctor Registration</h3>
             </div>
@@ -18,7 +18,7 @@ const CardExampleFluid=()=>{
           </div>
           
           <div className="col-md-6">
-          <Link to="patientlogin">
+          <Link to="patientregisteration">
           <div className="cardbox patientcardbox">
             <h3>Patient Registration</h3>
           </div>

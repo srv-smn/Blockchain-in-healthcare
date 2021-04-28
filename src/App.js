@@ -3,7 +3,6 @@ import Footer from './utils/Components/Footer/Footer'
 import Header from './utils/Components/Header/Header';
 import CardExampleFluid from './utils/Containers/UserReg/UserReg';
 import {Route} from 'react-router-dom'
-
 import './App.css';
 import SearchDoc from './utils/Containers/SearchDoc/SearchDoc';
 import SearchPatient from './utils/Containers/SearchPatient/SearchPatient';

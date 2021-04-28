@@ -5,7 +5,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
  const Header = () => {
      return (
-        <div className="header">
+        <div className="header-main">
         <Navbar variant="dark" expand="lg">
         <Navbar.Brand href="#home">HealthCare</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

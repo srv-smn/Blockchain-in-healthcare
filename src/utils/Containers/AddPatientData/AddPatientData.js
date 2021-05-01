@@ -4,21 +4,36 @@ import {FormControl,Button,InputGroup} from 'react-bootstrap'
 import { FaUser,FaAddressCard,FaNotesMedical, FaKey } from 'react-icons/fa'
 import {TiTick} from 'react-icons/ti'
 import {ImCross} from 'react-icons/im'
-
 import './addpatientdata.css'
+import web3 from '../../../ethereum/web3'
+import Admin from '../../../ethereum/Admin'
+import {connectToPatients,
+  connectToDoctor,
+  addToPatients,
+  addToDoctor,
+  doctorDetails,
+  patientDetails,
+  rwAccess
+} from '../../Eth/Ethutil' ;
+
 
 class AddPatientData extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+          name:'',
+          mno:'',
+          bg:'',
           description: '',
           selectedFile: null,
           count:0,
           value:'',
           r : <ImCross />,
-          rw : <ImCross />
+          rw : <ImCross />,
+          account:''
         };
+        
 
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeSearch = this.handleChangeSearch.bind(this);
@@ -26,6 +41,7 @@ class AddPatientData extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onFileChange = this.onFileChange.bind(this);
       }
+    
 
       viewHtml(){
           return(
@@ -37,7 +53,7 @@ class AddPatientData extends Component {
                       <div className="row">
                           <div className="col-4 detail-1"><FaUser size='4em' color='white' className="faicons"/></div>
                           <div className="col-8 card-content">
-                              <h2>Pranali Patil</h2>
+                              <h2>{this.state.name}</h2>
                           </div>
                       </div>
                   </div>
@@ -47,8 +63,8 @@ class AddPatientData extends Component {
                       <div className="row">
                           <div className="col-4 detail-2"><FaAddressCard size='4em' color='white' className="faicons"/></div>
                           <div className="col-8 card-content">
-                              <h4>0123456789<br />
-                              XYZ colony, Malkapur</h4>
+                              <h4>{this.state.mno}<br />
+                              </h4>
                           </div>
                       </div>
                   </div>
@@ -58,7 +74,7 @@ class AddPatientData extends Component {
                   <div className="container">
                       <div className="row">
                           <div className="col-4 detail-3"><FaNotesMedical size='4em' color='white' className="faicons"/></div>
-                          <div className="col-8 card-content"><h4>Blood Group : A+</h4></div>
+                          <div className="col-8 card-content"><h4>Blood Group : {this.state.bg}</h4></div>
                       </div>
                   </div>
               </div>
@@ -111,21 +127,53 @@ class AddPatientData extends Component {
          )
       }
 
-      async componentDidMount(){
-        let r = false;
-        let rw = true;
+ async componentDidMount(){
+        const accounts = await web3.eth.getAccounts();
+        const dExist = await Admin.methods.existD(accounts[0]).call()
+        if(!dExist)
+        alert("Doctor does not exist on this address");
+        this.setState({
+          account:accounts[0]
+        })
+      }
+
+      async handleSubmitSearch(event) {
+        event.preventDefault();
+        console.log(this.state.value)
+        let pExist = false;
+        if(web3.utils.checkAddressChecksum(this.state.value)){
+          pExist = await Admin.methods.existP(this.state.value).call()
+        }
+
+        if(!pExist)
+        {
+          alert("Patients does not exist on this address");
+        }
+        else{
+          const pAddr = await addToPatients(this.state.value);
+          const {nme,mno,bg} = await patientDetails(pAddr)
+          this.setState({
+            name:nme,
+            mno,
+            bg,
+            count:1,
+          })
+        }
+        let r,rw
+
+        if(pExist){
+          let{read,write} =  await rwAccess(this.state.value, this.state.account)
+          r = read
+          rw = write
+        }
+        console.log(r,rw)
+
         if(r==true){
             this.setState({r: <TiTick size="2em"/>})
         }
         if(rw==true){
             this.setState({rw: <TiTick size="2em"/>})
         }
-      }
-
-      handleSubmitSearch(event) {
-        event.preventDefault();
-        console.log(this.state.value)
-        this.setState({count:1});
       }
       handleChange(event) {
         const target = event.target;

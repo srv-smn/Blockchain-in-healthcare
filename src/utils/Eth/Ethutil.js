@@ -48,12 +48,29 @@ const patientDetails = async (address) =>{
     return {nme,mno,bg} 
 }
 
+const rwAccess = async (addressP, addressD) =>{
+    const pAddr = await addToPatients(addressP)
+    const patient = await connectToPatients(pAddr);
+    const read =  await patient.methods.viewers(addressD).call()
+    const dAddr = await addToDoctor(addressD)
+    const write =  await patient.methods.editors(dAddr).call()
+    console.log('read','write',read,write)
+    console.log('paadr',addressP);
+    console.log('aDAddr',pAddr);
+    console.log('POBJ',patient);
+    
+    return {read,write}
+}
+
+
+
 export {connectToPatients,
     connectToDoctor,
     addToPatients,
     addToDoctor,
     doctorDetails,
-    patientDetails
+    patientDetails,
+    rwAccess
 }
 
 

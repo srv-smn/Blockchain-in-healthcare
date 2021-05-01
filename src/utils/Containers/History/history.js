@@ -2,8 +2,37 @@ import React, { Component } from 'react'
 import { FaUserMd,FaAddressCard,FaNotesMedical, FaUsers } from 'react-icons/fa'
 import './history.css'
 import {Link} from 'react-router-dom'
+import web3 from '../../../ethereum/web3'
+import {connectToPatients,
+    connectToDoctor,
+    addToPatients,
+    addToDoctor,
+    doctorDetails,
+    patientDetails
+  } from '../../Eth/Ethutil' ;
+  import Admin from '../../../ethereum/Admin'
+
 
 class History extends Component {
+    state = {
+        name:'',
+        mno:'',
+        id:''
+    }
+    async componentDidMount(){
+        const accounts = await web3.eth.getAccounts();
+        const dExist = await Admin.methods.existD(accounts[0]).call()
+        if(!dExist)
+        alert("Doctor does not exist on this address");
+        const dAddr = await addToDoctor(accounts[0]);
+        const {nme,mno,id} =  await doctorDetails(dAddr)
+        this.setState({
+            name:nme,
+            mno,
+            id
+        })
+    }
+
     render() {
         return (
             <div className="history-main">
@@ -14,7 +43,7 @@ class History extends Component {
                         <div className="row">
                             <div className="col-4 doc-detail-1"><FaUserMd size='4em' color='white' className="faicons"/></div>
                             <div className="col-8 doc-card-content">
-                                <h2>Srv Smn</h2>
+                                <h2>{this.state.name}</h2>
                             </div>
                         </div>
                     </div>
@@ -24,7 +53,7 @@ class History extends Component {
                         <div className="row">
                             <div className="col-4 doc-detail-2"><FaAddressCard size='4em' color='white' className="faicons"/></div>
                             <div className="col-8 doc-card-content">
-                                <h4>0123456789</h4>
+                                <h4>{this.state.mno}</h4>
                             </div>
                         </div>
                     </div>
@@ -35,7 +64,7 @@ class History extends Component {
                         <div className="row">
                             <div className="col-4 doc-detail-3"><FaNotesMedical size='4em' color='white' className="faicons"/></div>
                             <div className="col-8 doc-card-content">
-                            <h4>ID: 122334</h4></div>
+                            <h4>ID: {this.state.id}</h4></div>
                         </div>
                     </div>
                 </div>

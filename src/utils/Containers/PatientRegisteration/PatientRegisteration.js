@@ -47,7 +47,7 @@ class PatientRegisteration extends React.Component {
     event.preventDefault();
     const accounts = await web3.eth.getAccounts();
 
-    await Admin.methods.addPatient(
+    const patient = await Admin.methods.addPatient(
       this.state.name,
       this.state.adharno,
       this.state.selectBloodgrp,
@@ -57,7 +57,8 @@ class PatientRegisteration extends React.Component {
       from: accounts[0]
     })
 
-    console.log(this.state)
+    console.log(patient);
+
     this.setState({
       name: "",
       selectBloodgrp: "",

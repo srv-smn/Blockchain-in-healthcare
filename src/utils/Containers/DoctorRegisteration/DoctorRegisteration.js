@@ -3,6 +3,13 @@ import './doctorregisteration.css'
 import { Form, Input } from 'semantic-ui-react'
 import web3 from '../../../ethereum/web3'
 import Admin from '../../../ethereum/Admin'
+import {connectToPatients,
+  connectToDoctor,
+  addToPatients,
+  addToDoctor,
+  doctorDetails,
+  patientDetails
+} from '../../Eth/Ethutil'
 
 class DoctorRegisteration extends React.Component{
 
@@ -26,6 +33,28 @@ class DoctorRegisteration extends React.Component{
    this.handleChange = this.handleChange.bind(this);
    this.handleSubmit = this.handleSubmit.bind(this);
    this.handleDropdownChange = this.handleDropdownChange.bind(this);
+ }
+ async componentDidMount(){
+  const accounts = await web3.eth.getAccounts(); 
+  const dExist = await Admin.methods.existD(accounts[0]).call()
+  const pExist = await Admin.methods.existP(accounts[0]).call()
+  console.log(dExist,pExist );
+
+  if(dExist){
+    const dAddr = await addToDoctor(accounts[0])
+    console.log('dAddr',dAddr);
+    const {nme,mno,id} =  await doctorDetails(dAddr)
+    console.log('details',nme,mno,id);
+  }
+
+  if(pExist){
+    const pAddr = await addToPatients(accounts[0])
+    console.log('pAddr',pAddr);
+    const {nme,mno,bg} = await patientDetails(pAddr)
+    console.log('details',nme,mno,bg);
+  }
+
+
  }
 
  handleChange(event) {

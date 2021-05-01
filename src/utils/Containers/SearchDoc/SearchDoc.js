@@ -1,6 +1,8 @@
 import React from 'react';
 import {FormControl,Button,InputGroup,Table} from 'react-bootstrap'
 import './searchdoc.css'
+import web3 from '../../../ethereum/web3'
+import Admin from '../../../ethereum/Admin'
 
 class SearchDoc extends React.Component{
 

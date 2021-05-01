@@ -30,17 +30,17 @@ class Login extends Component {
         </div>
       </div>
       </button>
-
+      
+      <Link to="newform">
       <button>
       <div className={Classes.container}>
         <img src={Admin} alt="Admin" className={Classes.image} />
         <div className={Classes.overlay}>
-          <Link to="newform">
-            <div className={Classes.text}>Admin</div>
-          </Link>  
+            <div className={Classes.text}>Admin</div> 
         </div>
       </div>
       </button>
+      </Link> 
       </form>
       </div>
     )

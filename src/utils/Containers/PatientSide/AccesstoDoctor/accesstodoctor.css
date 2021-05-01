@@ -1,0 +1,15 @@
+.access-to-doctor-main{
+    height: 100%;
+    padding: 50px;
+    background-color: #ebf8fc
+}
+.access-to-doctor{
+    background-color: white;
+    padding: 100px;
+    height: 300px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px #efefef;
+}
+.btns{
+    margin-right: 50px
+}

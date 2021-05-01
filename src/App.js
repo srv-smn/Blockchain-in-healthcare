@@ -10,6 +10,10 @@ import AddPatientData from './utils/Containers/AddPatientData/AddPatientData';
 import History from './utils/Containers/History/history';
 import DoctorRegisteration from './utils/Containers/DoctorRegisteration/DoctorRegisteration';
 import PatientRegisteration from './utils/Containers/PatientRegisteration/PatientRegisteration';
+import ViewData from './utils/Containers/ViewData/ViewData';
+import AccesstoDoctor from './utils/Containers/PatientSide/AccesstoDoctor/AccesstoDoctor';
+import FullDetail from './utils/Containers/PatientSide/PatientFullDetail/FullDetail';
+
 function App() {
   return (
     <div className="App">
@@ -20,16 +24,15 @@ function App() {
     <Route path="/home" component={Login} />
     <Route path="/doctorregisteration" component={DoctorRegisteration} />
     <Route path="/patientregisteration" component={PatientRegisteration} />
+    <Route path="/addpatientdata" component={AddPatientData} />
+    <Route path="/viewdata" component={ViewData} />
+    <Route path="/accesstodoctor" component={AccesstoDoctor} />
+    <Route path="/doctorhistory" component={History} />
+    <Route path="/full-details" component={FullDetail} />    
 
+
+    
     <Footer />
-    <br />
-    <SearchDoc />
-    <br />
-    <SearchPatient />
-    <br />
-    <AddPatientData />
-    <br />
-    <History />
     </div>
     
   );

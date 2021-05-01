@@ -45,10 +45,10 @@ class SearchPatient extends React.Component{
                     <thead>
                         <tr>
                         <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Owner</th>
                         <th>Mobile No.</th>
+                        <th>Blood Group</th>
                         </tr>
                     </thead>
                     <tbody>

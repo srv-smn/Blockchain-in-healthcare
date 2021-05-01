@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { FaUserMd,FaAddressCard,FaNotesMedical } from 'react-icons/fa'
+import { FaUserMd,FaAddressCard,FaNotesMedical, FaUsers } from 'react-icons/fa'
 import './history.css'
+import {Link} from 'react-router-dom'
 
 class History extends Component {
     render() {
@@ -23,8 +24,7 @@ class History extends Component {
                         <div className="row">
                             <div className="col-4 doc-detail-2"><FaAddressCard size='4em' color='white' className="faicons"/></div>
                             <div className="col-8 doc-card-content">
-                                <h4>0123456789<br />
-                                XYZ colony, Malkapur</h4>
+                                <h4>0123456789</h4>
                             </div>
                         </div>
                     </div>
@@ -34,9 +34,18 @@ class History extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-4 doc-detail-3"><FaNotesMedical size='4em' color='white' className="faicons"/></div>
-                            <div className="col-8 doc-card-content"><h4>
-                                ID: 122334 <br />
-                                Blood Group : A+</h4></div>
+                            <div className="col-8 doc-card-content">
+                            <h4>ID: 122334</h4></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="card doc-card">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-4 doc-detail-4"><FaUsers size='4em' color='white' className="faicons"/></div>
+                            <div className="col-8 doc-card-content">
+                            <h4>Total Patient : 5</h4></div>
                         </div>
                     </div>
                 </div>
@@ -70,7 +79,9 @@ class History extends Component {
                             <td>12/4/2021</td>
                             <td>detail.....</td>
                             <td>
+                                <Link to='/viewdata'>
                                 <input type="submit" value='View' className="btn-history"/>
+                                </Link>
                             </td>
                             </tr>
                             <tr>

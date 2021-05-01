@@ -1,6 +1,15 @@
 import React from 'react'
 import './doctorregisteration.css'
 import { Form, Input } from 'semantic-ui-react'
+import web3 from '../../../ethereum/web3'
+import Admin from '../../../ethereum/Admin'
+import {connectToPatients,
+  connectToDoctor,
+  addToPatients,
+  addToDoctor,
+  doctorDetails,
+  patientDetails
+} from '../../Eth/Ethutil'
 
 class DoctorRegisteration extends React.Component{
 
@@ -25,6 +34,28 @@ class DoctorRegisteration extends React.Component{
    this.handleSubmit = this.handleSubmit.bind(this);
    this.handleDropdownChange = this.handleDropdownChange.bind(this);
  }
+ async componentDidMount(){
+  const accounts = await web3.eth.getAccounts(); 
+  const dExist = await Admin.methods.existD(accounts[0]).call()
+  const pExist = await Admin.methods.existP(accounts[0]).call()
+  console.log(dExist,pExist );
+
+  if(dExist){
+    const dAddr = await addToDoctor(accounts[0])
+    console.log('dAddr',dAddr);
+    const {nme,mno,id} =  await doctorDetails(dAddr)
+    console.log('details',nme,mno,id);
+  }
+
+  if(pExist){
+    const pAddr = await addToPatients(accounts[0])
+    console.log('pAddr',pAddr);
+    const {nme,mno,bg} = await patientDetails(pAddr)
+    console.log('details',nme,mno,bg);
+  }
+
+
+ }
 
  handleChange(event) {
    const target = event.target;
@@ -44,10 +75,20 @@ class DoctorRegisteration extends React.Component{
 }
 
 
- handleSubmit(event) {
+ async handleSubmit(event) {
   event.preventDefault();
-   alert('A name was submitted: ' + this.state.name);
    console.log(this.state)
+   const accounts = await web3.eth.getAccounts(); 
+   
+   await Admin.methods.addDoctor(
+     this.state.name,
+     this.state.adharno,
+     this.state.mobno,
+     this.state.blockchainaddress,
+     this.state.identity
+   ).send({
+    from: accounts[0]
+   })
    this.setState({
    name:"",
    selectBloodgrp : "",

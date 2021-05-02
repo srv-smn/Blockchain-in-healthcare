@@ -187,7 +187,7 @@ class viewToDoctor extends Component {
 													Date : {rec.date} <br />
 													Details: {rec.details} <br />
 													Doctor: {rec.dName} <br />
-													Doctor ID : {rec.hash} <br />
+													Doctor ID : {rec.dId} <br />
 													<Button variant="primary" onClick={(event) => this.handleShow(event,rec.hash)} >
 														Launch demo modal
 												</Button>

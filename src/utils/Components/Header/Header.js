@@ -1,13 +1,26 @@
  import React from "react";
  import {Button,Form,FormControl,NavDropdown,Nav,Navbar} from 'react-bootstrap'
  import './header.css'
+ import web3 from '../../../ethereum/web3'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
- const Header = () => {
+
+class Header extends React.Component {
+    state = {
+        address:''
+    }
+
+   async componentDidMount(){
+        const a = await web3.eth.getAccounts();
+       this.setState({address:a[0]})
+    
+    }
+    render()
+    {
      return (
         <div className="header-main">
         <Navbar variant="dark" expand="lg">
-        <Navbar.Brand href="#home">HealthCare</Navbar.Brand>
+        <Navbar.Brand href="/">HealthCare</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto nav-items">
@@ -19,14 +32,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
             </NavDropdown>
             </Nav>
-            <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-            </Form>
+            <div style = {{color:'white',}}>
+            {this.state.address}
+
+            </div>
         </Navbar.Collapse>
         </Navbar>
         </div>
      );
+    }
  };
 
  export default Header;

@@ -173,7 +173,7 @@ class FullDetails extends Component {
 					<div className="stages">
 						<Timeline align="alternate">
 								{
-									this.state.finalObj.map((rec,index) =>{
+									this.state.finalObj.reverse().map((rec,index) =>{
 										console.log(rec);
 										return(
 											<TimelineItem key ={index}>
@@ -186,7 +186,7 @@ class FullDetails extends Component {
 													Date : {rec.date} <br />
 													Details: {rec.details} <br />
 													Doctor: {rec.dName} <br />
-													Doctor ID : {rec.hash} <br />
+													Doctor ID : {rec.dId} <br />
 													<Button variant="primary" onClick={(event) => this.handleShow(event,rec.hash)} >
 														Launch demo modal
 												</Button>

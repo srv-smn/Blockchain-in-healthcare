@@ -13,6 +13,7 @@ class Login extends Component {
       <div className={Classes.center} style={{ backgroundImage: `url(${Back})` }}>
         <form>
 
+      <Link to = '/doctorhistory'>
         <button>
       <div className={Classes.container}>
         <img src={Doctor} alt="Doctor" className={Classes.image} />
@@ -21,7 +22,9 @@ class Login extends Component {
         </div>
       </div>
       </button>
+      </Link>
 
+      <Link to = '/full-details'>
       <button>
       <div className={Classes.container}>
         <img src={Patient} alt="Patient" className={Classes.image} />
@@ -30,6 +33,7 @@ class Login extends Component {
         </div>
       </div>
       </button>
+      </Link>
       
       <Link to="newform">
       <button>

@@ -473,7 +473,9 @@ contract Doctor {
     function pRecord(uint256 _index)
         public
         view
-        returns (patientRecord memory)
+        returns (
+            patientRecord memory //ToDo : only doctor should access
+        )
     {
         return patients[_index];
     }

@@ -17,6 +17,7 @@ import {connectToPatients,
 } from '../../Eth/Ethutil' ;
 
 import ipfs from '../../../ipfs'
+import { Link } from 'react-router-dom'
 
 
 class AddPatientData extends Component {
@@ -43,6 +44,7 @@ class AddPatientData extends Component {
         this.handleChangeSearch = this.handleChangeSearch.bind(this);
         this.handleSubmitSearch = this.handleSubmitSearch.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+       // this.handleSubmitShow = this.handleSubmitShow.bind(this);
         this.onFileChange = this.onFileChange.bind(this);
       }
     
@@ -122,6 +124,16 @@ class AddPatientData extends Component {
                         </div>
                         <br />
                         <Button type='submit' color='green'onClick={this.handleSubmit}>Submit</Button>
+                        &nbsp; &nbsp; &nbsp;
+                        <Link to = {
+                                                    { 
+                                                        pathname: "/viewtodoctor",
+                                                        myCustomProps: {value:this.state.value}
+                                                    }
+                                                }>
+                    <Button variant="success" onClick={this.handleSubmitShow}>Previos Record</Button>
+                    
+                    </Link>
                     </Form>
                 </div>
                 </div>
@@ -249,14 +261,6 @@ class AddPatientData extends Component {
           alert('Data can not be written ')
          }
        
-
-       
-
-
-
-
-
-
          this.setState({
            description:'',
            selectedFile: null,

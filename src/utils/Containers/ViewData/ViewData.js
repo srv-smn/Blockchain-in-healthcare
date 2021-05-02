@@ -26,7 +26,8 @@ class ViewData extends Component {
             bg: '',
             r: <ImCross />,
             rw: <ImCross />,
-            show: false
+            show: false,
+            url:''
         }
         this.handleClose = this.handleClose.bind(this);
         this.handleShow = this.handleShow.bind(this);
@@ -46,9 +47,12 @@ class ViewData extends Component {
         if (write == true) {
             this.setState({ rw: <TiTick size="2em" /> })
         }
+        const url = 'https://ipfs.io/ipfs/' + this.props.location.myCustomProps.hash
+
         this.setState({
             mno,
-            bg
+            bg,
+            url
 
         })
 
@@ -105,7 +109,7 @@ class ViewData extends Component {
                                             <div className="row">
                                                 <div className="read-write">
                                                     Read &nbsp; {this.state.r} <br />
-                            Write &nbsp; {this.state.rw}
+                                                         Write &nbsp; {this.state.rw}
                                                 </div>
                                             </div>
                                         </div>
@@ -140,7 +144,7 @@ class ViewData extends Component {
                                         <Modal.Title>PRESCRIPTION</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                    <iframe src="https://ipfs.io/ipfs/QmSYfr5Lp8xekkBrA8mKSmdw7vBntFKvCGwpmrw9Vp7JeX" style={{width:'500%' ,height:'500px'}} className = 'img-fluid'frameBorder="0"></iframe>
+                                    <iframe src= {this.state.url} style={{width:'500%' ,height:'500px'}} className = 'img-fluid'frameBorder="0"></iframe>
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button variant="secondary" onClick={this.handleClose}>

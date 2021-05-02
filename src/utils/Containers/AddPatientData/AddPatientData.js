@@ -16,6 +16,8 @@ import {connectToPatients,
   rwAccess
 } from '../../Eth/Ethutil' ;
 
+import ipfs from '../../../ipfs'
+
 
 class AddPatientData extends Component {
 
@@ -31,7 +33,9 @@ class AddPatientData extends Component {
           value:'',
           r : <ImCross />,
           rw : <ImCross />,
-          account:''
+          account:'',
+          disables:true,
+          pCAddr:''
         };
         
 
@@ -151,6 +155,9 @@ class AddPatientData extends Component {
         }
         else{
           const pAddr = await addToPatients(this.state.value);
+          this.setState({
+            pCAddr: pAddr
+          })
           const {nme,mno,bg} = await patientDetails(pAddr)
           this.setState({
             name:nme,
@@ -189,13 +196,20 @@ class AddPatientData extends Component {
       }
     
       onFileChange = event => {
-        // Update the state
-        this.setState({ selectedFile: event.target.files[0] });
+
+        event.preventDefault()
+    const file = event.target.files[0]
+    const reader = new window.FileReader()
+    reader.readAsArrayBuffer(file)
+    reader.onloadend = () => {
+      this.setState({ selectedFile: Buffer(reader.result) })
+      console.log('buffer', this.state.selectedFile)
+    }
       };
 
 
 
-      handleSubmit(event) {
+      async handleSubmit(event) {
         event.preventDefault();
         // Create an object of formData
       const formData = new FormData();
@@ -209,12 +223,40 @@ class AddPatientData extends Component {
       if(this.state.description==='' && this.state.selectedFile===null){
           alert("Please enter the File and Description")
       }
-      else{
-          alert('Submitted Successfully')
-      }
       // Details of the uploaded file
       console.log(this.state.selectedFile);
          console.log(this.state.description)
+
+         try{
+          const ipfsUpload =  await ipfs.files.add(this.state.selectedFile)
+          console.log(typeof ipfsUpload[0].hash);
+          const hash = ipfsUpload[0].hash
+          const dAddr = await addToDoctor(this.state.account);
+          console.log(1);
+          const doctor = await connectToDoctor(dAddr)
+          console.log(2);
+          console.log(doctor);
+          await doctor.methods.addPatientRecord(
+            this.state.description,
+            hash,
+            this.state.pCAddr
+          ).send({
+            from:this.state.account
+        })
+        console.log(3);
+         }
+         catch{
+          alert('Data can not be written ')
+         }
+       
+
+       
+
+
+
+
+
+
          this.setState({
            description:'',
            selectedFile: null,
@@ -223,7 +265,7 @@ class AddPatientData extends Component {
     
 
     render() {
-
+      
         let viewCond;
         if(this.state.count !== 0){
             viewCond = this.viewHtml()

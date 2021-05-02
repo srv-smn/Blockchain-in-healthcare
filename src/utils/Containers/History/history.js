@@ -20,7 +20,8 @@ class History extends Component {
         id:'',
         len:0,
         record:[],
-        finalObj:[]
+        finalObj:[],
+        account:''
     }
     async componentDidMount(){
         const accounts = await web3.eth.getAccounts();
@@ -32,6 +33,7 @@ class History extends Component {
         const {nme,mno,id,len} =  await doctorDetails(dAddr)
         let record = []
         const doctor = await connectToDoctor(dAddr) 
+        this.setState({account:accounts[0]})
 
 
         for(let i=0;i<len;i++){
@@ -70,6 +72,7 @@ class History extends Component {
                 date,
                 patient:this.state.record[i].patient,
                 details:this.state.record[i].details,
+                hash:this.state.record[i].hash,
             }
             console.log(6);
             const temp = [...this.state.finalObj, obj]
@@ -169,7 +172,12 @@ class History extends Component {
                                  <td>{rec.date}</td>
                                  <td>{rec.details}</td>
                                  <td>
-                                     <Link to='/viewdata'>
+                                     <Link to={
+                                                    { 
+                                                        pathname: "/viewdata",
+                                                        myCustomProps: {...rec, dAddr:this.state.account}
+                                                    }
+                                                }>
                                      <input type="submit" value='View' className="btn-history"/>
                                      </Link>
                                  </td>

@@ -7,9 +7,9 @@ import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import { Paper } from '@material-ui/core';
 import { FaUser, FaAddressCard, FaNotesMedical, FaKey } from 'react-icons/fa'
-import './patienthistory.css'
-import web3 from '../../../../ethereum/web3'
-import Admin from '../../../../ethereum/Admin'
+import './viewToDoctor.css'
+import web3 from '../../../ethereum/web3'
+import Admin from '../../../ethereum/Admin'
 import { Modal, Button } from 'react-bootstrap'
 
 import {
@@ -20,11 +20,11 @@ import {
 	doctorDetails,
 	patientDetails,
 	rwAccess
-} from '../../../Eth/Ethutil'
+} from '../../Eth/Ethutil'
 
 
 
-class FullDetails extends Component {
+class viewToDoctor extends Component {
 
 	constructor(props) {
 		super(props)
@@ -53,13 +53,14 @@ class FullDetails extends Component {
 
 	async componentDidMount() {
 		const accounts = await web3.eth.getAccounts();
+        const pId = this.props.location.myCustomProps.value
 		
-		const pExist = await Admin.methods.existP(accounts[0]).call()
+		const pExist = await Admin.methods.existP(pId).call()
 		if (!pExist) {
 			alert("Patients does not exist on this address");
 		}
 		else {
-			const pAddr = await addToPatients(accounts[0])
+			const pAddr = await addToPatients(pId)
 			const { nme, mno, bg } = await patientDetails(pAddr)
 
 			const patient = await connectToPatients(pAddr)
@@ -173,7 +174,7 @@ class FullDetails extends Component {
 					<div className="stages">
 						<Timeline align="alternate">
 								{
-									this.state.finalObj.reverse().map((rec,index) =>{
+									this.state.finalObj.map((rec,index) =>{
 										console.log(rec);
 										return(
 											<TimelineItem key ={index}>
@@ -221,4 +222,4 @@ class FullDetails extends Component {
 }
 
 
-export default FullDetails;
+export default viewToDoctor;

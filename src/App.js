@@ -13,6 +13,7 @@ import PatientRegisteration from './utils/Containers/PatientRegisteration/Patien
 import ViewData from './utils/Containers/ViewData/ViewData';
 import AccesstoDoctor from './utils/Containers/PatientSide/AccesstoDoctor/AccesstoDoctor';
 import FullDetail from './utils/Containers/PatientSide/PatientFullDetail/FullDetail';
+import viewToDoctor from './utils/Containers/viewToDoctor/viewToDoctor'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
     <Route path="/accesstodoctor" component={AccesstoDoctor} />
     <Route path="/doctorhistory" component={History} />
     <Route path="/full-details" component={FullDetail} />    
+    <Route path="/viewtodoctor" component={viewToDoctor} />    
 
 
     

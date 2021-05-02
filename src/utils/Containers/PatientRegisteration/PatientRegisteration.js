@@ -102,7 +102,7 @@ class PatientRegisteration extends React.Component {
                 <option value="A-">A-</option>
                 <option value="B+">B+</option>
                 <option value="B-">B-</option>
-                <option value="AB+">AB-</option>
+                <option value="AB+">AB+</option>
                 <option value="AB-">AB-</option>
                 <option value="O+">O+</option>
                 <option value="O-">O-</option>

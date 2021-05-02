@@ -135,7 +135,7 @@ class ViewData extends Component {
                             <div>
                                 <h4>File</h4>
                                 <Button variant="primary" onClick={this.handleShow}>
-                                    Launch demo modal
+                                   SHOW PRESCRIPTION
                                     </Button>
 
 

@@ -280,10 +280,7 @@
 //     }
 // }
 
-// SPDX-License-Identifier: GPL-3.0
-
-// SPDX-License-Identifier: GPL-3.0
-
+//SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.7.0;
 pragma experimental ABIEncoderV2;
 
@@ -384,7 +381,6 @@ contract Patient {
     //set permissions for editors
     function addEditor(address _addr) public onlyOwner {
         editors[_addr] = true;
-        viewers[_addr] = true;
     }
 
     //revoke viewing rights
@@ -395,7 +391,6 @@ contract Patient {
     //remove permissions for editors
     function removeEditor(address _addr) public onlyOwner {
         editors[_addr] = false;
-        viewers[_addr] = false;
     }
 
     // function for addinng details and report
@@ -404,7 +399,7 @@ contract Patient {
         public
         onlyEditor
     {
-        require(admin.existD(msg.sender), "You are not a registered Doctor");
+        require(admin.existDA(msg.sender), "You are not a registered Doctor");
 
         record memory newRecord =
             record({
@@ -442,7 +437,7 @@ contract Doctor {
     string kyc;
     string public mno;
     string public id;
-    address owner;
+    address public owner;
 
     constructor(
         string memory _name,
@@ -494,7 +489,7 @@ contract Doctor {
         patientRecord memory precord =
             patientRecord({
                 date: block.timestamp,
-                patient: msg.sender,
+                patient: _patient,
                 detail: _details,
                 hash: _hash
             });
@@ -507,6 +502,7 @@ contract Admin {
     mapping(address => address) public doctors;
     mapping(address => address) public patients;
     mapping(address => bool) public existD;
+    mapping(address => bool) public existDA;
     mapping(address => bool) public existP;
     address public owner;
 
@@ -538,6 +534,7 @@ contract Admin {
         doctorsAddress.push(_owner);
         doctors[_owner] = address(newDoctor);
         existD[_owner] = true;
+        existDA[address(newDoctor)] = true;
     }
 
     function addPatient(

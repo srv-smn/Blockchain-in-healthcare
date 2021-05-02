@@ -33,8 +33,9 @@ const doctorDetails = async (address) =>{
     const nme = await doctor.methods.name().call();
     const mno = await doctor.methods.mno().call();
     const id = await doctor.methods.id().call();
+    const len = await doctor.methods.recordLen().call();
 
-    return {nme,mno,id} 
+    return {nme,mno,id,len} 
 }
 
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import './patientregisteration.css'
-import { Form, Input } from 'semantic-ui-react'
+import { Form, Input, Button,Message } from 'semantic-ui-react'
 import web3 from '../../../ethereum/web3'
 import Admin from '../../../ethereum/Admin'
 
@@ -9,6 +9,9 @@ class PatientRegisteration extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading:false,
+      errorMessage:'',
+      hidden:true,
       name: "",
       selectBloodgrp: "",
       dob: "",
@@ -45,7 +48,10 @@ class PatientRegisteration extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    const accounts = await web3.eth.getAccounts();
+    this.setState({loading:true})
+
+    try {
+      const accounts = await web3.eth.getAccounts();
 
     const patient = await Admin.methods.addPatient(
       this.state.name,
@@ -56,9 +62,6 @@ class PatientRegisteration extends React.Component {
     ).send({
       from: accounts[0]
     })
-
-    console.log(patient);
-
     this.setState({
       name: "",
       selectBloodgrp: "",
@@ -72,7 +75,33 @@ class PatientRegisteration extends React.Component {
       state: "",
       country: "",
     });
+
+      
+    } catch (error) {
+      this.setState({errorMessage: error.message, hidden:false});
+      
+    }
+  this.setState({loading:false})
   }
+
+  isFormValid = () => {
+    const {
+      name,
+     selectBloodgrp,
+     dob,
+     email,
+     mobno ,
+     adharno,
+     blockchainaddress,
+     address ,
+     zip,
+     state,
+     country,
+     } =  this.state
+  
+     console.log("in button");
+    return name && selectBloodgrp && dob && email && mobno && adharno && blockchainaddress && address && zip && state && country
+   }
 
 
   render() {
@@ -209,9 +238,11 @@ class PatientRegisteration extends React.Component {
             />
           </Form.Group>
           <br />
-          <input type="submit" value="Submit" className='btn-submit' />
-
+          <Button primary onClick = {this.handleSubmit} disabled={!this.isFormValid()} loading ={this.state.loading} > Submit</Button>
+          
         </Form>
+        <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
+        
       </div>
     )
   }

@@ -28,6 +28,8 @@ class HeaderP extends React.Component {
             <Nav.Link href = '/full-details' >Home</Nav.Link>
             <Nav.Link href = '/accesstodoctor'>Add Access</Nav.Link>
             </Nav>
+            &nbsp;
+            <div id="google_translate_element"></div> &nbsp;
             <div style = {{color:'white',}}>
             {this.state.address}
 

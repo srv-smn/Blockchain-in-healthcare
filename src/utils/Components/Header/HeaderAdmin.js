@@ -28,6 +28,8 @@ class HeaderA extends React.Component {
             <Nav.Link href = '/doctorregisteration' >Register Doctor</Nav.Link>
             <Nav.Link href = '/doctorregisteration'>Register Patients</Nav.Link>
             </Nav>
+            &nbsp;
+            <div id="google_translate_element"></div> &nbsp;
             <div style = {{color:'white',}}>
             {this.state.address}
 

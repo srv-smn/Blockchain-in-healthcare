@@ -28,10 +28,15 @@ class Header extends React.Component {
             <Nav.Link href = '' >Contact Us</Nav.Link>
             <Nav.Link href = ''>About Us</Nav.Link>
             </Nav>
+            &nbsp;
+            <div id="google_translate_element"></div> &nbsp;
             <div style = {{color:'white',}}>
+
             {this.state.address}
 
             </div>
+            
+        
         </Navbar.Collapse>
         </Navbar>
         </div>

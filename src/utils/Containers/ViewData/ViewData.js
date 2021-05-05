@@ -4,11 +4,6 @@ import './viewdata.css'
 import web3 from '../../../ethereum/web3'
 import Admin from '../../../ethereum/Admin'
 import {
-    connectToPatients,
-    connectToDoctor,
-    addToPatients,
-    addToDoctor,
-    doctorDetails,
     patientDetails,
     rwAccess
 } from '../../Eth/Ethutil'

@@ -16,10 +16,7 @@ import {
 	connectToPatients,
 	connectToDoctor,
 	addToPatients,
-	addToDoctor,
-	doctorDetails,
 	patientDetails,
-	rwAccess
 } from '../../../Eth/Ethutil'
 
 
@@ -136,7 +133,7 @@ class FullDetails extends Component {
 
 	render() {
 		const paperstyle = {
-			padding: '8px 1px',
+			padding: '8px 5px',
 			textAlign: 'center',
 		}
 
@@ -145,21 +142,21 @@ class FullDetails extends Component {
 
 				<div class="container">
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="card-counter primary">
 								<FaUser className='fa-icons' />
 								<span class="count-name">{this.state.nme}</span>
 							</div>
 						</div>
 
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="card-counter success">
 								<FaAddressCard className='fa-icons' />
 								<span class="count-name">{this.state.mno}</span>
 							</div>
 						</div>
 
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="card-counter danger">
 								<FaNotesMedical className='fa-icons' />
 								<span class="count-name">{this.state.bg}</span>

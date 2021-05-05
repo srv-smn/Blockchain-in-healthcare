@@ -5,10 +5,8 @@ import {Link} from 'react-router-dom'
 import web3 from '../../../ethereum/web3'
 import {connectToPatients,
     connectToDoctor,
-    addToPatients,
     addToDoctor,
     doctorDetails,
-    patientDetails
   } from '../../Eth/Ethutil' ;
   import Admin from '../../../ethereum/Admin'
 

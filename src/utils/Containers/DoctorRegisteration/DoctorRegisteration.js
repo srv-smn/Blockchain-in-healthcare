@@ -3,8 +3,7 @@ import './doctorregisteration.css'
 import { Form, Input,Button,Message } from 'semantic-ui-react'
 import web3 from '../../../ethereum/web3'
 import Admin from '../../../ethereum/Admin'
-import {connectToPatients,
-  connectToDoctor,
+import {
   addToPatients,
   addToDoctor,
   doctorDetails,
@@ -169,7 +168,7 @@ class DoctorRegisteration extends React.Component{
               <option value="A-">A-</option>
               <option value="B+">B+</option>
               <option value="B-">B-</option>
-              <option value="AB+">AB-</option>
+              <option value="AB+">AB+</option>
               <option value="AB-">AB-</option>
               <option value="O+">O+</option>
               <option value="O-">O-</option>

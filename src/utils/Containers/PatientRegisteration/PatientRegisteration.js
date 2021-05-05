@@ -106,8 +106,8 @@ class PatientRegisteration extends React.Component {
 
   render() {
     return (
-      <div className="main-reg-form">
-        <Form className="reg-form" action='' onSubmit={this.handleSubmit}>
+      <div className="main-reg-form-pat">
+        <Form className="reg-form-pat" action='' onSubmit={this.handleSubmit}>
           <h2>Patient Registration</h2>
           <hr />
           <Form>

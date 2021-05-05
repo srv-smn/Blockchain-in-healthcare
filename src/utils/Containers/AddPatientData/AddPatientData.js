@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
-import { Form,TextArea } from 'semantic-ui-react'
-import {FormControl,Button,InputGroup} from 'react-bootstrap'
+import { Form,TextArea, Message,Button } from 'semantic-ui-react'
+import {FormControl,InputGroup} from 'react-bootstrap'
 import { FaUser,FaAddressCard,FaNotesMedical, FaKey } from 'react-icons/fa'
 import {TiTick} from 'react-icons/ti'
 import {ImCross} from 'react-icons/im'
 import './addpatientdata.css'
 import web3 from '../../../ethereum/web3'
 import Admin from '../../../ethereum/Admin'
-import {connectToPatients,
+import {
   connectToDoctor,
   addToPatients,
   addToDoctor,
-  doctorDetails,
   patientDetails,
   rwAccess
 } from '../../Eth/Ethutil' ;
@@ -25,6 +24,10 @@ class AddPatientData extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading:false,
+            sloading:false,
+            errorMessage:'',
+            hidden:true,    
           name:'',
           mno:'',
           bg:'',
@@ -123,7 +126,7 @@ class AddPatientData extends Component {
                             <input type="file" onChange={this.onFileChange} required/>
                         </div>
                         <br />
-                        <Button type='submit' color='green'onClick={this.handleSubmit}>Submit</Button>
+                        <Button type='submit' color='green' onClick={this.handleSubmit} disabled={!this.isFormValid()} loading ={this.state.loading}>Submit</Button>
                         &nbsp; &nbsp; &nbsp;
                         <Link to = {
                                                     { 
@@ -131,7 +134,7 @@ class AddPatientData extends Component {
                                                         myCustomProps: {value:this.state.value}
                                                     }
                                                 }>
-                    <Button variant="success" onClick={this.handleSubmitShow}>Previos Record</Button>
+                    <Button primary onClick={this.handleSubmitShow} >Previos Record</Button>
                     
                     </Link>
                     </Form>
@@ -154,7 +157,9 @@ class AddPatientData extends Component {
       }
 
       async handleSubmitSearch(event) {
+        this.setState({sloading:true})
         event.preventDefault();
+        
         console.log(this.state.value)
         let pExist = false;
         if(web3.utils.checkAddressChecksum(this.state.value)){
@@ -193,6 +198,7 @@ class AddPatientData extends Component {
         if(rw==true){
             this.setState({rw: <TiTick size="2em"/>})
         }
+        this.setState({sloading:false})
       }
       handleChange(event) {
         const target = event.target;
@@ -223,6 +229,7 @@ class AddPatientData extends Component {
 
       async handleSubmit(event) {
         event.preventDefault();
+        this.setState({loading:true})
         // Create an object of formData
       const formData = new FormData();
     
@@ -257,16 +264,35 @@ class AddPatientData extends Component {
         })
         console.log(3);
          }
-         catch{
-          alert('Data can not be written ')
-         }
+        catch (error) {
+            this.setState({errorMessage: error.message, hidden:false});            
+        }
        
          this.setState({
            description:'',
            selectedFile: null,
+           loading:false
          });
       }
     
+      isFormValid = () => {
+        const {
+            description,
+            selectedFile,
+         } =  this.state
+      
+         console.log("in button");
+        return description && selectedFile
+       }  
+
+       isSearchValid = () => {
+        const {
+          value
+         } =  this.state
+      
+        return value
+       }
+      
 
     render() {
       
@@ -286,12 +312,12 @@ class AddPatientData extends Component {
                     onChange = {this.handleChangeSearch}
                 />
                 <InputGroup.Append>
-                    <Button variant="success" onClick={this.handleSubmitSearch}>Search</Button>
+                    <Button primary onClick={this.handleSubmitSearch} loading ={this.state.sloading} disabled={!this.isFormValid()}>Search</Button>
                 </InputGroup.Append>
                 </InputGroup>
                 <br/>
                 { viewCond }
-            
+                <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
             </div>
 
         )

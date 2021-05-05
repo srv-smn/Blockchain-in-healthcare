@@ -1,9 +1,7 @@
  import React from "react";
- import {Button,Form,FormControl,NavDropdown,Nav,Navbar} from 'react-bootstrap'
+ import {Nav,Navbar} from 'react-bootstrap'
  import './header.css'
  import web3 from '../../../ethereum/web3'
- import {Link} from 'react-router-dom'
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class HeaderD extends React.Component {
@@ -28,6 +26,9 @@ class HeaderD extends React.Component {
             <Nav.Link href = '/doctorhistory' >Home</Nav.Link>
             <Nav.Link href = '/addpatientdata'>Add Data</Nav.Link>
             </Nav>
+            &nbsp;
+            <div id="google_translate_element" ></div> &nbsp;
+
             <div style = {{color:'white',}}>
             {this.state.address}
 

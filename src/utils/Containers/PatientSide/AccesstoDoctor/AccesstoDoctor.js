@@ -2,16 +2,15 @@ import React, { Component } from 'react'
 import {FaAddressCard,FaUserMd,FaNotesMedical, FaSearchPlus, FaKey} from 'react-icons/fa'
 import {TiTick} from 'react-icons/ti'
 import {ImCross} from 'react-icons/im'
-import {Form, Button} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
+import {Button, Message} from 'semantic-ui-react'
 import './accesstodoctor.css'
 import web3 from '../../../../ethereum/web3'
 import Admin from '../../../../ethereum/Admin'
 import {connectToPatients,
-    connectToDoctor,
     addToPatients,
     addToDoctor,
     doctorDetails,
-    patientDetails,
     rwAccess
   } from '../../../Eth/Ethutil' ;
 
@@ -20,6 +19,13 @@ class AccesstoDoctor extends Component {
         super(props);
         
         this.state = {value: '',
+                    errorMessage:'',
+                    hidden: true,
+                    avloading: false,
+                    awloading: false,
+                    rvloading: false,
+                    rwloading: false,
+                    loading:false,
                     account:'',
                     count:0,
                     dName:'',
@@ -47,29 +53,41 @@ class AccesstoDoctor extends Component {
         })
     }
     async handleSubmitRemoveView(event){
+        this.setState({rvloading:true})
         event.preventDefault();
+        try{
         const pAddr = await addToPatients(this.state.account)
         const patient = await connectToPatients(pAddr)
         await patient.methods.removeViewer(this.state.value).send({
             from:this.state.account
         })
-
+        }catch(error){
+            this.setState({errorMessage: error.message, hidden:false});
+        }
+        this.setState({rvloading:false})
 
     }
 
     async handleSubmitRemoveWrite(event){
+        this.setState({rwloading:true})
         event.preventDefault();
+        try{
         const pAddr = await addToPatients(this.state.account)
         const patient = await connectToPatients(pAddr)
        const dAddr = await addToDoctor(this.state.value)
         await patient.methods.removeEditor(dAddr).send({
             from:this.state.account
         })
-        
+    }catch(error){
+        this.setState({errorMessage: error.message, hidden:false});
+    }
+        this.setState({rwloading:false})
     }
     async handleSubmitSearch(event) {
+        this.setState({loading:true})
         event.preventDefault();
         let dExist = false;
+       
         if(web3.utils.checkAddressChecksum(this.state.value)){
           dExist = await Admin.methods.existD(this.state.value).call()
         }
@@ -97,10 +115,14 @@ class AccesstoDoctor extends Component {
               disabled:false
             })
           }
+        
+        this.setState({loading:false})
     }
 
     async handleSubmitView(event) {
+        this.setState({avloading:true})
         event.preventDefault();
+        try{
         const pExist = await Admin.methods.existP(this.state.account).call()
         if(!pExist)
         {
@@ -123,13 +145,18 @@ class AccesstoDoctor extends Component {
             alert("Doctor does not exist on this address");
         }
     }
-
+    }catch(error){
+        this.setState({errorMessage: error.message, hidden:false});
+    }
+    this.setState({avloading:false})
 
 
     }
 
     async handleSubmitWrite(event) {
+        this.setState({awloading:true})
         event.preventDefault();
+        try{
         const pExist = await Admin.methods.existP(this.state.account).call()
         if(!pExist)
         {
@@ -154,7 +181,10 @@ class AccesstoDoctor extends Component {
             alert("Doctor does not exist on this address");
         }
     }
-        
+    }catch(error){
+        this.setState({errorMessage: error.message, hidden:false});
+    }
+    this.setState({awloading:false})
     }
 
 
@@ -207,7 +237,7 @@ class AccesstoDoctor extends Component {
                         <div className="row">
                             <div className="read-write">
                             Read &nbsp; {this.state.r} <br />
-                            Read + Write &nbsp; {this.state.rw}
+                            Write &nbsp; {this.state.rw}
                             </div>
                        </div>
                       </div>   
@@ -218,6 +248,15 @@ class AccesstoDoctor extends Component {
             </div> 
         )
     }
+
+    isSearchValid = () => {
+        const {
+          value
+         } =  this.state
+      
+        return value
+       }
+
     render() {
         let htm = null
         if(this.state.count != 0){
@@ -225,7 +264,6 @@ class AccesstoDoctor extends Component {
         }
         return (
             <div className="access-to-doctor-main">
-                <div className="container">
                {htm}
 
                 <div className="access-to-doctor">
@@ -240,14 +278,15 @@ class AccesstoDoctor extends Component {
                             onChange = {this.handleChange} />
                     </Form.Group>
                 </Form>  
-                <Button variant="primary" className="py-2 btns" onClick={this.handleSubmitSearch} > Search <FaSearchPlus color = "white"/> </Button>
-                <Button variant="success" className="py-2 btns" onClick={this.handleSubmitView} disabled={this.state.disabled}>Add View</Button>
-                <Button variant="success" className="py-2 btns" onClick={this.handleSubmitWrite} disabled={this.state.disabled}> Add Write</Button>  
-                <Button variant="danger" className="py-2 btns" onClick={this.handleSubmitRemoveView} disabled={this.state.disabled}>Remove View</Button>
-                <Button variant="danger" className="py-2 " onClick={this.handleSubmitRemoveWrite} disabled={this.state.disabled}>Remove Write</Button>
+                <Button primary className="py-3 btns" onClick={this.handleSubmitSearch} disabled={!this.isSearchValid()} loading ={this.state.loading}> Search <FaSearchPlus color = "white"/> </Button>
+                <Button color='green' className="py-3 btns" onClick={this.handleSubmitView} disabled={this.state.disabled} loading ={this.state.avloading}>Add View</Button>
+                <Button color='green' className="py-3 btns" onClick={this.handleSubmitWrite} disabled={this.state.disabled} loading ={this.state.awloading}> Add Write</Button>  
+                <Button color='red' className="py-3 btns" onClick={this.handleSubmitRemoveView} disabled={this.state.disabled} loading ={this.state.rvloading}>Remove View</Button>
+                <Button color='red' className="py-3 " onClick={this.handleSubmitRemoveWrite} disabled={this.state.disabled} loading ={this.state.rwloading}>Remove Write</Button>
                 </div> 
                 </div> 
-                </div>
+                <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
+
                 </div>
         )
     }

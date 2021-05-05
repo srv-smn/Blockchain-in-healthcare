@@ -11,6 +11,7 @@ import {connectToPatients,
   patientDetails
 } from '../../Eth/Ethutil'
 
+
 class DoctorRegisteration extends React.Component{
 
  constructor(props) {
@@ -143,6 +144,8 @@ class DoctorRegisteration extends React.Component{
 
  render(){
     return(
+      <div>
+      
       <div className="main-reg-form">
       <Form className="reg-form" action='' onSubmit={this.handleSubmit}>
         <h2>Doctor Registration</h2>
@@ -288,6 +291,7 @@ class DoctorRegisteration extends React.Component{
 
      </Form>
      <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
+     </div>
      </div>
    )
 }

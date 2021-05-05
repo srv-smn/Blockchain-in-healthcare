@@ -6,7 +6,7 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class Header extends React.Component {
+class HeaderD extends React.Component {
     state = {
         address:''
     }
@@ -25,8 +25,8 @@ class Header extends React.Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto nav-items">
-            <Nav.Link href = '' >Contact Us</Nav.Link>
-            <Nav.Link href = ''>About Us</Nav.Link>
+            <Nav.Link href = '/doctorhistory' >Home</Nav.Link>
+            <Nav.Link href = '/addpatientdata'>Add Data</Nav.Link>
             </Nav>
             <div style = {{color:'white',}}>
             {this.state.address}
@@ -39,5 +39,5 @@ class Header extends React.Component {
     }
  };
 
- export default Header;
+ export default HeaderD;
 

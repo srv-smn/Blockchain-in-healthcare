@@ -1,21 +1,22 @@
 import React from 'react'
 import './doctorregisteration.css'
-import { Form, Input } from 'semantic-ui-react'
+import { Form, Input,Button,Message } from 'semantic-ui-react'
 import web3 from '../../../ethereum/web3'
 import Admin from '../../../ethereum/Admin'
-import {connectToPatients,
-  connectToDoctor,
+import {
   addToPatients,
   addToDoctor,
   doctorDetails,
   patientDetails
 } from '../../Eth/Ethutil'
 
+
 class DoctorRegisteration extends React.Component{
 
  constructor(props) {
    super(props);
    this.state = {
+     loading:false,
     name: '',
    selectBloodgrp : "",
    dob : "",
@@ -28,6 +29,8 @@ class DoctorRegisteration extends React.Component{
    zip: "",
    state: "",
    country: "",
+   errorMessage:'',
+   hidden:true
    };
 
    this.handleChange = this.handleChange.bind(this);
@@ -76,39 +79,72 @@ class DoctorRegisteration extends React.Component{
 
 
  async handleSubmit(event) {
-  event.preventDefault();
-   console.log(this.state)
-   const accounts = await web3.eth.getAccounts(); 
+
+  try {
+    this.setState({loading:true})
+    event.preventDefault();
+     console.log(this.state)
+     const accounts = await web3.eth.getAccounts(); 
+     
+  console.log(122);
+     await Admin.methods.addDoctor(
+       this.state.name,
+       this.state.adharno,
+       this.state.mobno,
+       this.state.blockchainaddress,
+       this.state.identity
+     ).send({
+      from: accounts[0]
+     })
+     console.log(123);
+     this.setState({
+     name:"",
+     selectBloodgrp : "",
+     dob : "",
+     email: "",
+     mobno : "",
+     adharno: '',
+     identity : "",
+     blockchainaddress: "",
+     address : "",
+     zip: "",
+     state: "",
+     country: "",
+     });
+    
+  } catch (error) {
+    this.setState({errorMessage: error.message, hidden:false});
+    
+  }
+  this.setState({loading:false});
    
-   await Admin.methods.addDoctor(
-     this.state.name,
-     this.state.adharno,
-     this.state.mobno,
-     this.state.blockchainaddress,
-     this.state.identity
-   ).send({
-    from: accounts[0]
-   })
-   this.setState({
-   name:"",
-   selectBloodgrp : "",
-   dob : "",
-   email: "",
-   mobno : "",
-   adharno: '',
-   identity : "",
-   blockchainaddress: "",
-   address : "",
-   zip: "",
-   state: "",
-   country: "",
-   });
-   
+ }
+
+ isFormValid = () => {
+  const {
+    name,
+   selectBloodgrp,
+   dob,
+   email,
+   mobno ,
+   adharno,
+   identity ,
+   blockchainaddress,
+   address ,
+   zip,
+   state,
+   country,
+   } =  this.state
+
+   console.log("in button");
+  return name && selectBloodgrp && dob && email && mobno && adharno && identity && blockchainaddress && address && zip && state && country
  }
 
 
  render(){
     return(
+      <div>
+      
       <div className="main-reg-form">
       <Form className="reg-form" action='' onSubmit={this.handleSubmit}>
         <h2>Doctor Registration</h2>
@@ -132,7 +168,7 @@ class DoctorRegisteration extends React.Component{
               <option value="A-">A-</option>
               <option value="B+">B+</option>
               <option value="B-">B-</option>
-              <option value="AB+">AB-</option>
+              <option value="AB+">AB+</option>
               <option value="AB-">AB-</option>
               <option value="O+">O+</option>
               <option value="O-">O-</option>
@@ -248,10 +284,13 @@ class DoctorRegisteration extends React.Component{
          required
        />
        </Form.Group>
-       <br />
-       <input type="submit" value="Submit" className='btn-submit'/>
+      
+      <Button primary onClick = {this.handleSubmit} disabled={!this.isFormValid()} loading ={this.state.loading} > Submit</Button>
+      
 
      </Form>
+     <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
+     </div>
      </div>
    )
 }

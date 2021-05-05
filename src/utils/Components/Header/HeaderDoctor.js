@@ -1,11 +1,10 @@
-import React from "react";
+ import React from "react";
  import {Nav,Navbar} from 'react-bootstrap'
  import './header.css'
  import web3 from '../../../ethereum/web3'
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class Header extends React.Component {
+class HeaderD extends React.Component {
     state = {
         address:''
     }
@@ -24,18 +23,16 @@ class Header extends React.Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto nav-items">
-            <Nav.Link href = '' >Contact Us</Nav.Link>
-            <Nav.Link href = ''>About Us</Nav.Link>
+            <Nav.Link href = '/doctorhistory' >Home</Nav.Link>
+            <Nav.Link href = '/addpatientdata'>Add Data</Nav.Link>
             </Nav>
             &nbsp;
-            <div id="google_translate_element" style = {{padding: '7px',}}></div> &nbsp;
-            <div style = {{color:'white',}}>
 
+            <div id="google_translate_element"></div> &nbsp;
+            <div style = {{color:'white',}}>
             {this.state.address}
 
             </div>
-            
-        
         </Navbar.Collapse>
         </Navbar>
         </div>
@@ -43,4 +40,5 @@ class Header extends React.Component {
     }
  };
 
- export default Header;
+ export default HeaderD;
+

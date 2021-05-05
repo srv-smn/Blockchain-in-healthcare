@@ -1,48 +1,11 @@
-.main-reg-form{
-    height: 100%;
-    padding: 50px;
+.main-reg-form-pat{
+    height: 120%;
+    padding: 40px
 }
-.reg-form{
+.reg-form-pat{
     margin-left: 25%;
     margin-right:25%;
     padding: 20px;
     background-color: white;
     box-shadow: 0 0 10px 1px rgb(202, 202, 202);
 }
-.reg-form h2{
-    padding: 5px;
-    margin-bottom: 20px;
-}
-.reg-form hr{
-    margin-bottom: 30px;
-}
-.fieldcss{
-    margin-top:15px;
-    width: 50%;
-    margin-bottom: 10px;
-    
-}
-
-label{
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 14px !important;
-    display: table-cell;
-}
-
-.btn-submit{
-    background-color: #0477fc;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    border-radius: 5px
-}
-.btn-submit:hover{
-    background-color: #044da0
-}
-
-@media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    
-  }

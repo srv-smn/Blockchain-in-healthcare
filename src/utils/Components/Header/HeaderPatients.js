@@ -30,7 +30,10 @@ class HeaderP extends React.Component {
             </Nav>
             &nbsp;
             <div id="google_translate_element"></div> &nbsp;
+<<<<<<< HEAD
 
+=======
+>>>>>>> c81462b18b5cb66cc500a0968827982db9d1947a
             <div style = {{color:'white',}}>
             {this.state.address}
 

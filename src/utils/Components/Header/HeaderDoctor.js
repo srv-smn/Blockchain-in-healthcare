@@ -27,8 +27,8 @@ class HeaderD extends React.Component {
             <Nav.Link href = '/addpatientdata'>Add Data</Nav.Link>
             </Nav>
             &nbsp;
-            <div id="google_translate_element" ></div> &nbsp;
 
+            <div id="google_translate_element"></div> &nbsp;
             <div style = {{color:'white',}}>
             {this.state.address}
 

@@ -3,8 +3,8 @@
     padding: 50px;
 }
 .reg-form{
-    margin-left: 25%;
-    margin-right:25%;
+    margin-left: 15%;
+    margin-right:15%;
     padding: 20px;
     background-color: white;
     box-shadow: 0 0 10px 1px rgb(202, 202, 202);
@@ -42,7 +42,19 @@ label{
     background-color: #044da0
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 600px) {
     /* For mobile phones: */
-    
+    .fieldcss{
+        margin-top:15px;
+        width: 60%;
+        margin-bottom: 10px;
+        
+    }
+    .reg-form{
+        margin-left: 10%;
+        margin-right:10%;
+        padding: 20px;
+        background-color: none;
+        box-shadow: none !important;
+    }   
   }

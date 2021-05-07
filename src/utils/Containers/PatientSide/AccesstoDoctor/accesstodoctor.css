@@ -13,3 +13,18 @@
 .btns{
     margin-right: 50px
 }
+
+ @media only screen and (max-width: 660px) {
+    .access-to-doctor{
+        background-color: white;
+        padding: 30px;
+        height: 300px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px 1px #efefef;
+    }
+    .btns{
+        padding: 10px !important;
+        margin-right: 30px
+    }
+    
+} 

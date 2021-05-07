@@ -1,8 +1,7 @@
  import React from "react";
- import {Button,Form,FormControl,NavDropdown,Nav,Navbar} from 'react-bootstrap'
+ import {Nav,Navbar} from 'react-bootstrap'
  import './header.css'
  import web3 from '../../../ethereum/web3'
- import {Link} from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -30,14 +29,12 @@ class HeaderP extends React.Component {
             </Nav>
             &nbsp;
             <div id="google_translate_element"></div> &nbsp;
-<<<<<<< HEAD
-
-=======
->>>>>>> c81462b18b5cb66cc500a0968827982db9d1947a
             <div style = {{color:'white',}}>
+
             {this.state.address}
 
             </div>
+
         </Navbar.Collapse>
         </Navbar>
         </div>

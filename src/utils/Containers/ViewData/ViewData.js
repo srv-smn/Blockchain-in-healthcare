@@ -36,10 +36,10 @@ class ViewData extends Component {
         const { read, write } = await rwAccess(this.props.location.myCustomProps.pId, this.props.location.myCustomProps.dAddr)
 
 
-        if (read == true) {
+        if (read === true) {
             this.setState({ r: <TiTick size="2em" /> })
         }
-        if (write == true) {
+        if (write === true) {
             this.setState({ rw: <TiTick size="2em" /> })
         }
         const url = 'https://ipfs.io/ipfs/' + this.props.location.myCustomProps.hash

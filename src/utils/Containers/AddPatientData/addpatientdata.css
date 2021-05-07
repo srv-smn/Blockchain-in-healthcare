@@ -1,6 +1,6 @@
 .add-patient-main{
     height: 100%;
-    padding: 70px;
+    padding: 100px;
     background-color: #ebf8fc;
 }
 .ui icon input{
@@ -8,7 +8,7 @@
 }
 .greet{
     text-align: left;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     font-size: 40px
 }
 .detail-1{
@@ -43,7 +43,7 @@
 .patient-form{
     background-color: white;
     padding: 20px;
-    margin-top: 30px;
+    margin-top: 50px;
     border-radius: 5px;
     height: auto;
     box-shadow: 0 0 10px 1px #e6e5e5 !important
@@ -71,3 +71,20 @@
       font-weight: bold
   }
   
+  @media only screen and (max-width: 450px) {
+    .add-patient-main{
+        height: 100%;
+        padding: 20px;
+        background-color: #ebf8fc;
+    }
+  .card-content {
+    margin-top: 50px;
+    padding: 5px;
+    font-size: 10px !important
+}
+.faicons{
+    margin-top: 40px;
+    padding: 10px !important;
+    margin-left: -10px;
+}
+  }

@@ -185,7 +185,7 @@ class FullDetails extends Component {
 													Doctor: {rec.dName} <br />
 													Doctor ID : {rec.dId} <br />
 													<Button variant="primary" onClick={(event) => this.handleShow(event,rec.hash)} >
-														Launch demo modal
+														View Document
 												</Button>
 												</Paper>
 											</TimelineContent>

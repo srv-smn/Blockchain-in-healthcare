@@ -96,7 +96,7 @@ class History extends Component {
     render() {
         return (
             <div className="history-main">
-            <h1 className="greet-doc">Welcome back srv smn !!!</h1>
+            <h1 className="greet-doc">Welcome back !!!</h1>
             <div class="ui cards">
               <div className="card doc-card">
                     <div className="container">

@@ -1,6 +1,6 @@
 .stages-main{
   height: 100%;
-  padding: 50px;
+  padding: 80px !important;
   background-color: #ebf8fc;
 }
 .card-counter{
@@ -21,21 +21,19 @@
 .card-counter.primary{
   background-color: #007bff;
   color: #FFF;
+  height: 150px;
 }
 
 .card-counter.danger{
   background-color: #ef5350;
   color: #FFF;
+  height: 150px;
 }  
 
 .card-counter.success{
   background-color: #66bb6a;
   color: #FFF;
-}  
-
-.card-counter.info{
-  background-color: #26c6da;
-  color: #FFF;
+  height: 150px;
 }  
 
 .card-counter .fa-icons{
@@ -60,4 +58,15 @@
   margin-top: 50px;
   background-color: white;
   padding: 50px; 
+}
+
+@media only screen and (max-width: 420px) {
+  .card-counter .count-name{
+    position: absolute;
+    right: 30px;
+    top: 70px;
+    font-style: italic;
+    display: block;
+    font-size: 20px !important;
+  }
 }

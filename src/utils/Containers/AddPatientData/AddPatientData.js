@@ -98,7 +98,7 @@ class AddPatientData extends Component {
                         <div className="row">
                             <div className="read-write">
                             Read &nbsp; {this.state.r} <br />
-                            Read + Write &nbsp; {this.state.rw}
+                            Write &nbsp; {this.state.rw}
                             </div>
                        </div>
                       </div>   
@@ -192,10 +192,10 @@ class AddPatientData extends Component {
         }
         console.log(r,rw)
 
-        if(r==true){
+        if(r===true){
             this.setState({r: <TiTick size="2em"/>})
         }
-        if(rw==true){
+        if(rw===true){
             this.setState({rw: <TiTick size="2em"/>})
         }
         this.setState({sloading:false})
@@ -304,7 +304,7 @@ class AddPatientData extends Component {
             <div className="add-patient-main">
             
                 <h1 className="greet">Welcome, hope you are good !!!</h1>
-                <InputGroup className="mb-3">
+                <InputGroup className="mb-4">
                     <FormControl
                     placeholder="Enter Blockchain address"
                     aria-label="city name"
@@ -312,7 +312,7 @@ class AddPatientData extends Component {
                     onChange = {this.handleChangeSearch}
                 />
                 <InputGroup.Append>
-                    <Button primary onClick={this.handleSubmitSearch} loading ={this.state.sloading} disabled={!this.isFormValid()}>Search</Button>
+                    <Button primary onClick={this.handleSubmitSearch} loading ={this.state.sloading}>Search</Button>
                 </InputGroup.Append>
                 </InputGroup>
                 <br/>

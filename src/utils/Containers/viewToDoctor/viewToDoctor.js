@@ -6,7 +6,7 @@ import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import { Paper } from '@material-ui/core';
-import { FaUser, FaAddressCard, FaNotesMedical, FaKey } from 'react-icons/fa'
+import { FaUser, FaAddressCard, FaNotesMedical } from 'react-icons/fa'
 import './viewToDoctor.css'
 import web3 from '../../../ethereum/web3'
 import Admin from '../../../ethereum/Admin'
@@ -17,7 +17,6 @@ import {
 	connectToDoctor,
 	addToPatients,
 	patientDetails,
-	rwAccess
 } from '../../Eth/Ethutil'
 
 
@@ -187,7 +186,7 @@ class viewToDoctor extends Component {
 													Doctor: {rec.dName} <br />
 													Doctor ID : {rec.dId} <br />
 													<Button variant="primary" onClick={(event) => this.handleShow(event,rec.hash)} >
-														Launch demo modal
+														View Document
 												</Button>
 												</Paper>
 											</TimelineContent>

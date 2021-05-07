@@ -61,3 +61,14 @@
     background-color: white;
     padding: 50px; 
   }
+
+  @media only screen and (max-width: 420px) {
+    .card-counter .count-name{
+      position: absolute;
+      right: 30px;
+      top: 70px;
+      font-style: italic;
+      display: block;
+      font-size: 20px !important;
+    }
+  }

@@ -3,7 +3,7 @@ import React from 'react'
 import Footer from './utils/Components/Footer/Footer'
 import Header from './utils/Components/Header/Header';
 import CardExampleFluid from './utils/Containers/UserReg/UserReg';
-import {Route} from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import './App.css';
 import AddPatientData from './utils/Containers/AddPatientData/AddPatientData';
 import History from './utils/Containers/History/history';
@@ -13,7 +13,7 @@ import ViewData from './utils/Containers/ViewData/ViewData';
 import AccesstoDoctor from './utils/Containers/PatientSide/AccesstoDoctor/AccesstoDoctor';
 import FullDetail from './utils/Containers/PatientSide/PatientFullDetail/FullDetail';
 import viewToDoctor from './utils/Containers/viewToDoctor/viewToDoctor'
-
+import ContactPage from './utils/contact/contactus'
 import HeaderA from './utils/Components/Header/HeaderAdmin'
 import HeaderD from './utils/Components/Header/HeaderDoctor'
 import HeaderP from './utils/Components/Header/HeaderPatients'
@@ -24,14 +24,14 @@ import Admin from './ethereum/Admin'
 
 
 
-class App extends React.Component{
-  state ={
-    dExist:false,
-    pExist:false,
-    isOwner:false
+class App extends React.Component {
+  state = {
+    dExist: false,
+    pExist: false,
+    isOwner: false
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
     const accounts = await web3.eth.getAccounts();
     const dExist = await Admin.methods.existD(accounts[0]).call()
     const pExist = await Admin.methods.existP(accounts[0]).call()
@@ -45,39 +45,40 @@ class App extends React.Component{
 
 
   }
-  render(){
-     console.log(window.location.pathname);
+  render() {
+    console.log(window.location.pathname);
     let sidebarComponent = <Header />
-    if(this.state.isOwner && !(window.location.pathname === '/')){
+    if (this.state.isOwner && !(window.location.pathname === '/')) {
       sidebarComponent = <HeaderA />
-     } else if(this.state.pExist && !(window.location.pathname === '/')){
+    } else if (this.state.pExist && !(window.location.pathname === '/')) {
       sidebarComponent = <HeaderP />
-     } else if(this.state.dExist && !(window.location.pathname === '/')){
+    } else if (this.state.dExist && !(window.location.pathname === '/')) {
       sidebarComponent = <HeaderD />
-     }
+    }
 
-  return (
-    <div className="App">
-    {sidebarComponent}
- 
-    <Route path="/" exact component={Login} />
-    <Route path="/newform" component={CardExampleFluid} />
-    <Route path="/home" component={Login} />
-    <Route path="/doctorregisteration" component={DoctorRegisteration} />
-    <Route path="/patientregisteration" component={PatientRegisteration} />
-    <Route path="/addpatientdata" component={AddPatientData} />
-    <Route path="/viewdata" component={ViewData} />
-    <Route path="/accesstodoctor" component={AccesstoDoctor} />
-    <Route path="/doctorhistory" component={History} />
-    <Route path="/full-details" component={FullDetail} />    
-    <Route path="/viewtodoctor" component={viewToDoctor} />    
+    return (
+      <div className="App">
+        {sidebarComponent}
+
+        <Route path="/" exact component={Login} />
+        <Route path="/newform" component={CardExampleFluid} />
+        <Route path="/home" component={Login} />
+        <Route path="/doctorregisteration" component={DoctorRegisteration} />
+        <Route path="/patientregisteration" component={PatientRegisteration} />
+        <Route path="/addpatientdata" component={AddPatientData} />
+        <Route path="/viewdata" component={ViewData} />
+        <Route path="/accesstodoctor" component={AccesstoDoctor} />
+        <Route path="/doctorhistory" component={History} />
+        <Route path="/full-details" component={FullDetail} />
+        <Route path="/viewtodoctor" component={viewToDoctor} />
+        <Route path="/contact" component={ContactPage} />
 
 
-    
-    <Footer />
-    </div>
-    
-  );
+
+        <Footer />
+      </div>
+
+    );
   }
 }
 

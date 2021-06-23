@@ -9,6 +9,7 @@ import {connectToPatients,
     doctorDetails,
   } from '../../Eth/Ethutil' ;
   import Admin from '../../../ethereum/Admin'
+  import { Container, Row, Col } from 'react-bootstrap';
 
 
 class History extends Component {

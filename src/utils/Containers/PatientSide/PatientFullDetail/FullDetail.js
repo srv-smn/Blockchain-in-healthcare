@@ -6,7 +6,7 @@ import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import { Paper } from '@material-ui/core';
-import { FaUser, FaAddressCard, FaNotesMedical, FaKey } from 'react-icons/fa'
+import { FaUser,FaAddressCard,FaNotesMedical, FaUsers } from 'react-icons/fa'
 import './patienthistory.css'
 import web3 from '../../../../ethereum/web3'
 import Admin from '../../../../ethereum/Admin'
@@ -140,31 +140,40 @@ class FullDetails extends Component {
 		return (
 			<div className="stages-main">
 
-				<div class="container">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="card-counter primary">
-								<FaUser className='fa-icons' />
-								<span class="count-name">{this.state.nme}</span>
-							</div>
-						</div>
+<div class="ui cards">
+              <div className="card doc-card">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-4 doc-detail-1"><FaUser size='4em' color='white' className="faicons"/></div>
+                            <div className="col-8 doc-card-content">
+                                <h2>{this.state.nme}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="card doc-card">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-4 doc-detail-2"><FaAddressCard size='4em' color='white' className="faicons"/></div>
+                            <div className="col-8 doc-card-content">
+                                <h4>{this.state.mno}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-						<div class="col-md-4">
-							<div class="card-counter success">
-								<FaAddressCard className='fa-icons' />
-								<span class="count-name">{this.state.mno}</span>
-							</div>
-						</div>
+                <div className="card doc-card">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-4 doc-detail-3"><FaNotesMedical size='4em' color='white' className="faicons"/></div>
+                            <div className="col-8 doc-card-content">
+                            <h4>Blood Group: {this.state.bg}</h4></div>
+                        </div>
+                    </div>
+                </div>
+			</div>
 
-						<div class="col-md-4">
-							<div class="card-counter danger">
-								<FaNotesMedical className='fa-icons' />
-								<span class="count-name">{this.state.bg}</span>
-							</div>
-						</div>
-
-					</div>
-				</div>
+                
 
 				<div className="container">
 					<div className="stages">

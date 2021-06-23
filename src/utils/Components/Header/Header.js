@@ -18,16 +18,19 @@ class Header extends React.Component {
     render()
     {
      return (
+    
         <div className="header-main">
         <Navbar variant="dark" expand="lg">
         <Navbar.Brand href="/">HealthCare</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+        
             <Nav className="mr-auto nav-items">
-            <Nav.Link href = '' >Contact Us</Nav.Link>
+            <Nav.Link href = '/contact' >Contact Us</Nav.Link>
             <Nav.Link href = ''>About Us</Nav.Link>
             </Nav>
-            &nbsp;
+        
+            &nbsp;&nbsp;
             <div id="google_translate_element" style = {{padding: '7px',}}></div> &nbsp;
             <div style = {{color:'white',}}>
 

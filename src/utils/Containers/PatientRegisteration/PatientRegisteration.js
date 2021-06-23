@@ -137,7 +137,7 @@ class PatientRegisteration extends React.Component {
                 <option value="O-">O-</option>
               </select>
             </label>
-
+            &nbsp;&nbsp;&nbsp;
             <div className="fieldcss">
               <label>Date of Birth
             <input
@@ -238,8 +238,9 @@ class PatientRegisteration extends React.Component {
             />
           </Form.Group>
           <br />
-          <Button primary onClick = {this.handleSubmit} disabled={!this.isFormValid()} loading ={this.state.loading} > Submit</Button>
-          
+          <div style={{textAlign:"center"}}>
+          <Button primary onClick = {this.handleSubmit}  disabled={!this.isFormValid()} loading ={this.state.loading} > Submit</Button>
+          </div>
         </Form>
         <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
         

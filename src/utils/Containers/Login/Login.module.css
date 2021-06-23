@@ -57,11 +57,14 @@
   margin: 10px;
 }
 
-@media (max-width: 720px) {
+
+@media only screen and (max-width: 720px) {
   .center{
-    margin-left: 50px;
+    margin-left: 00px;
     padding: 10%;
     text-align: center;
+  
+    
   }
   .container {
     width: 150px;

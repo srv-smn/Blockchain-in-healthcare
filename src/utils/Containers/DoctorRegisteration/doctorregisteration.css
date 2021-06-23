@@ -1,14 +1,28 @@
 .main-reg-form{
     height: 100%;
     padding: 50px;
+    background-image: url("b4.jpg");
+}
+
+.App{
+    text-align: left;
+}
+.App h2{
+    text-align: center;
 }
 .reg-form{
-    margin-left: 15%;
-    margin-right:15%;
+    margin-left: 23%;
+    margin-right:23%;
     padding: 20px;
     background-color: white;
-    box-shadow: 0 0 10px 1px rgb(202, 202, 202);
+    /* background-image: url("nn.jpg"); */
+    box-shadow: 0 0 10px 1px rgba(202, 202, 202, 0.849);
+    border-radius: 3%;
 }
+.ui input{
+    border-radius: 50%;
+}
+
 .reg-form h2{
     padding: 5px;
     margin-bottom: 20px;

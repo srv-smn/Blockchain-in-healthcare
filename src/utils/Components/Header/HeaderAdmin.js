@@ -25,7 +25,7 @@ class HeaderA extends React.Component {
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto nav-items">
             <Nav.Link href = '/doctorregisteration' >Register Doctor</Nav.Link>
-            <Nav.Link href = '/doctorregisteration'>Register Patients</Nav.Link>
+            <Nav.Link href = '/patientregisteration'>Register Patients</Nav.Link>
             </Nav>
             &nbsp;
             <div id="google_translate_element"></div> &nbsp;

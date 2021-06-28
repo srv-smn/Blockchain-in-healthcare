@@ -126,6 +126,7 @@ class AddPatientData extends Component {
                             <input type="file" onChange={this.onFileChange} required/>
                         </div>
                         <br />
+                        <div style={{textAlign:"center"}}>
                         <Button type='submit' color='green' onClick={this.handleSubmit} disabled={!this.isFormValid()} loading ={this.state.loading}>Submit</Button>
                         &nbsp; &nbsp; &nbsp;
                         <Link to = {
@@ -137,6 +138,7 @@ class AddPatientData extends Component {
                     <Button primary onClick={this.handleSubmitShow} >Previos Record</Button>
                     
                     </Link>
+                    </div>
                     </Form>
                 </div>
                 </div>

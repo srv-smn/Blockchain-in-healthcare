@@ -6,7 +6,7 @@ import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import { Paper } from '@material-ui/core';
-import { FaUser,FaAddressCard,FaNotesMedical, FaUsers } from 'react-icons/fa'
+import { FaUser,FaAddressCard,FaNotesMedical, FaBirthdayCake } from 'react-icons/fa'
 import './patienthistory.css'
 import web3 from '../../../../ethereum/web3'
 import Admin from '../../../../ethereum/Admin'
@@ -57,7 +57,7 @@ class FullDetails extends Component {
 		}
 		else {
 			const pAddr = await addToPatients(accounts[0])
-			const { nme, mno, bg } = await patientDetails(pAddr)
+			const { nme, mno, bg,age } = await patientDetails(pAddr)
 
 			const patient = await connectToPatients(pAddr)
 			
@@ -112,7 +112,8 @@ class FullDetails extends Component {
 				bg,
 				account: accounts[0],
 				record,
-				finalObj: temp
+				finalObj: temp,
+				age
 			})
 
 
@@ -140,8 +141,9 @@ class FullDetails extends Component {
 		return (
 			<div className="stages-main">
 
-<div class="ui cards">
-              <div className="card doc-card">
+<div class="ui cards container-fluid" >
+
+              <div className="card doc-card mr-3">
                     <div className="container">
                         <div className="row">
                             <div className="col-4 doc-detail-1"><FaUser size='4em' color='white' className="faicons"/></div>
@@ -162,6 +164,17 @@ class FullDetails extends Component {
                     </div>
                 </div>
 
+				<div className="card doc-card">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-4 doc-detail-4"><FaBirthdayCake size='4em' color='white' className="faicons"/></div>
+                            <div className="col-8 doc-card-content">
+                                <h4>{this.state.age}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="card doc-card">
                     <div className="container">
                         <div className="row">
@@ -172,10 +185,10 @@ class FullDetails extends Component {
                     </div>
                 </div>
 			</div>
-
+			
                 
 
-				<div className="container">
+				<div className="container-fluid">
 					<div className="stages">
 						<Timeline align="alternate">
 								{

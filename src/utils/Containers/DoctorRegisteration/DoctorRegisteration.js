@@ -1,6 +1,6 @@
 import React from 'react'
 import './doctorregisteration.css'
-import { Form, Input,Button,Message } from 'semantic-ui-react'
+import { Form, Input,Button,Message, Container } from 'semantic-ui-react'
 import web3 from '../../../ethereum/web3'
 import Admin from '../../../ethereum/Admin'
 import {
@@ -291,7 +291,9 @@ class DoctorRegisteration extends React.Component{
       </div>
 
      </Form>
-     <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
+     <Container style={{textAlign:"center", marginTop:'20px'}}>
+     <Message style = {{textAlign:'center'}} error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
+     </Container>
      </div>
      </div>
    )

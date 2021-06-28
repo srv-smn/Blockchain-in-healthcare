@@ -278,11 +278,13 @@ class AccesstoDoctor extends Component {
                             onChange = {this.handleChange} />
                     </Form.Group>
                 </Form>  
+                <div style={{textAlign:"center"}}>
                 <Button primary className="py-3 btns" onClick={this.handleSubmitSearch} disabled={!this.isSearchValid()} loading ={this.state.loading}> Search <FaSearchPlus color = "white"/> </Button>
                 <Button color='green' className="mb-2 py-3 btns" onClick={this.handleSubmitView} disabled={this.state.disabled} loading ={this.state.avloading}>Add View</Button>
                 <Button color='green' className="mb-2 py-3 btns" onClick={this.handleSubmitWrite} disabled={this.state.disabled} loading ={this.state.awloading}> Add Write</Button>  
                 <Button color='red' className="mb-2 py-3 btns" onClick={this.handleSubmitRemoveView} disabled={this.state.disabled} loading ={this.state.rvloading}>Remove View</Button>
                 <Button color='red' className="mb-2 py-3 btns" onClick={this.handleSubmitRemoveWrite} disabled={this.state.disabled} loading ={this.state.rwloading}>Remove Write</Button>
+                </div>
                 </div> 
                 </div> 
                 <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>

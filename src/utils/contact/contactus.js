@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './contactus.css'
-import contact from './../../assets/ab2.jpeg'
+import contact from './../../assets/contact.jpg'
 
 export default function ContactPage() {
     return (

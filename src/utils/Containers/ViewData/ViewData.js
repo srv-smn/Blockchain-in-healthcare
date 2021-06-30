@@ -28,8 +28,11 @@ class ViewData extends Component {
         this.handleShow = this.handleShow.bind(this);
 
     }
-
+    
     async componentDidMount() {
+        if(this.props.location.myCustomProps.pName == "undefined"){
+           return window.location = '/doctorhistory';
+        }
         console.log(this.props.location.myCustomProps
         );
         const { nme, mno, bg } = await patientDetails(this.props.location.myCustomProps.patient)
@@ -60,12 +63,12 @@ class ViewData extends Component {
     render() {
         return (
             <div className="viewdata">
-                <div className="">
-                    <h1>View Patient's Data</h1>
+                <div>
+                    <p style={{fontSize:'30px', marginBottom:'25px', marginLeft:'10px'}}>Patient's Data</p>
                     <div className="patient-cards">
 
-                        <div class="ui cards">
-                            <div className="card">
+                        <div class="ui cards container-fluid">
+                            <div className="card ml-4 mr-4">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-4 detail-1"><FaUser size='4em' color='white' className="faicons" /></div>
@@ -75,7 +78,7 @@ class ViewData extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="card">
+                            <div className="card ml-4 mr-4">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-4 detail-2"><FaAddressCard size='4em' color='white' className="faicons" /></div>
@@ -86,7 +89,7 @@ class ViewData extends Component {
                                 </div>
                             </div>
 
-                            <div className="card">
+                            <div className="card ml-4 mr-4">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-4 detail-3"><FaNotesMedical size='4em' color='white' className="faicons" /></div>
@@ -94,7 +97,7 @@ class ViewData extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="card">
+                            <div className="card ml-4 mr-4">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-4 access-1">
@@ -115,21 +118,55 @@ class ViewData extends Component {
                     </div>
                 </div>
 
-                <div className="displayform">
-                    <div className="container">
-                        <div>
-
-                            <h4>Details</h4>
-                            <p><h5>Remark:</h5>  {this.props.location.myCustomProps.details}
-                            </p>
-                            <p><h5>Date:</h5>  {this.props.location.myCustomProps.date}
+                <p style={{fontSize:'30px', marginTop:'40px', marginLeft:'10px'}}>Report Information</p>
+                <div className="container-fluid">
+                    <div className="row">
+                    <div className="mt-2 col-xl-4 col-md-12">
+                    <div className='card card-box py-3' >
+                        <div className="display-form">
+                            <h3>Basic Information</h3>
+                            <hr />
+                            <p><b>Date:</b>  {this.props.location.myCustomProps.date}
                             </p>
                             <h4>Patient blockchain address</h4>
-                            <p>{this.props.location.myCustomProps.pId}</p>
+                            <p>{this.props.location.myCustomProps.pId}</p>  
+                            </div>
+                            </div>
+                    </div>
 
+                     <div className="mt-2 col-xl-4 col-md-12">
+                     <div className='card card-box py-3'>
+                        <div className="display-form">    
+                            <h3>Health Details</h3>
+                            <hr/>
+                            <p><b>Disease/Injury : </b>  {this.props.location.myCustomProps.details.split("$")[0]}
+                            </p>
+                            <p><b>Description :</b> {this.props.location.myCustomProps.details.split("$")[1]}
+                            </p>
+                            <p><b>Blood Pressure : </b> {this.props.location.myCustomProps.details.split("$")[2]}
+                            </p>
+                        </div>
+                        </div>        
+                        </div>
+                        
+                        <div className="mt-2 col-xl-4 col-md-12">
+                        <div className='card card-box py-3' >
+                        <div className="display-form">
+                            <h3>Report</h3><hr/>
+                            <p><b>Report Type :</b> {this.props.location.myCustomProps.details.split("$")[4]}
+                            </p><br/>
                             <div>
-                                <h4>File</h4>
-                                <Button variant="primary" onClick={this.handleShow}>
+                                <p><b>Next Appointment Date :</b> {this.props.location.myCustomProps.details.split("$")[3]}
+                                </p>
+                                        
+                            </div> 
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div style={{textAlign:'center'}}>
+                    <Button variant="primary" onClick={this.handleShow}>
                                    SHOW PRESCRIPTION
                                     </Button>
 
@@ -147,19 +184,13 @@ class ViewData extends Component {
                                          </Button>
                                        
                                     </Modal.Footer>
-                                </Modal>
-
-
-
-                                
-                            </div>
-                        </div>
-
+                                </Modal> 
+                        </div>        
                     </div>
                 </div>
 
 
-            </div >
+         
 
         )
     }

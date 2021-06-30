@@ -1,26 +1,36 @@
 .access-to-doctor-main{
     height: 100%;
-    padding: 50px;
-    background-color: #ebf8fc
+    padding: 80px;
+    background-color: powderblue
 }
 .access-to-doctor{
-    background-color: white;
+    background-image: url('../../../../assets/w6.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 100px;
     height: 300px;
     border-radius: 5px;
-    box-shadow: 0 0 10px 1px #efefef;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 33%);
+}
+.access-to-doctor:hover{
+    box-shadow: 0px 5px 25px 0px rgb(0 0 0 / 20%);
 }
 .btns{
     margin-right: 50px
 }
 
  @media only screen and (max-width: 660px) {
+    .access-to-doctor-main{
+        height: 100%;
+        padding: 30px;
+        background-color: #C6EBC9
+    }
     .access-to-doctor{
         background-color: white;
-        padding: 30px;
+        padding: 10px;
         height: 300px;
         border-radius: 5px;
-        box-shadow: 0 0 10px 1px #efefef;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 33%);
     }
     .btns{
         padding: 10px !important;

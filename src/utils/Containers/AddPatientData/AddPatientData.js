@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Form,TextArea, Message,Button } from 'semantic-ui-react'
-import {FormControl,InputGroup} from 'react-bootstrap'
+import { Form,TextArea, Message,Button, Input,Radio } from 'semantic-ui-react'
+import {FormControl,InputGroup, Container, Row, Col} from 'react-bootstrap'
 import { FaUser,FaAddressCard,FaNotesMedical, FaKey } from 'react-icons/fa'
+import hospital from './../../../assets/hospital.png'
 import {TiTick} from 'react-icons/ti'
 import {ImCross} from 'react-icons/im'
 import './addpatientdata.css'
@@ -27,18 +28,21 @@ class AddPatientData extends Component {
             loading:false,
             sloading:false,
             errorMessage:'',
-            hidden:true,    
+            hidden:true, 
+            condition: '',   
           name:'',
           mno:'',
           bg:'',
-          description: '',
+          remark:'',
+          bp: 'NA',
+          nextdate:'NA',
           selectedFile: null,
           count:0,
           value:'',
           r : <ImCross />,
           rw : <ImCross />,
           account:'',
-          disables:true,
+          disabled:true,
           pCAddr:''
         };
         
@@ -49,6 +53,7 @@ class AddPatientData extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
        // this.handleSubmitShow = this.handleSubmitShow.bind(this);
         this.onFileChange = this.onFileChange.bind(this);
+        this.handleRadio = this.handleRadio.bind(this);
       }
     
 
@@ -57,7 +62,7 @@ class AddPatientData extends Component {
               <div className="view-elements">
                 
             <div class="ui cards">
-            <div className="card add-card">
+            <div className="card ml-3 mr-3">
                   <div className="container">
                       <div className="row">
                           <div className="col-4 detail-1"><FaUser size='4em' color='white' className="faicons"/></div>
@@ -67,7 +72,7 @@ class AddPatientData extends Component {
                       </div>
                   </div>
               </div>
-              <div className="card">
+              <div className="card ml-4 mr-4">
                   <div className="container">
                       <div className="row">
                           <div className="col-4 detail-2"><FaAddressCard size='4em' color='white' className="faicons"/></div>
@@ -79,7 +84,7 @@ class AddPatientData extends Component {
                   </div>
               </div>
 
-              <div className="card">
+              <div className="card ml-4 mr-4">
                   <div className="container">
                       <div className="row">
                           <div className="col-4 detail-3"><FaNotesMedical size='4em' color='white' className="faicons"/></div>
@@ -88,8 +93,8 @@ class AddPatientData extends Component {
                   </div>
               </div>
 
-              <div className="card">
-                  <div className="container">
+              <div className="card ml-4 mr-4">
+                  <div className="container-fluid">
                   <div className="row">
                       <div className="col-4 access-1">
                         <FaKey size='4em' color='white' className="faicons"/>
@@ -109,35 +114,80 @@ class AddPatientData extends Component {
               </div> 
               
               <div className="patient-form">
+              <h1>Basic Information</h1>
                 <div className="card">
                 <div className="card-body">        
-                    <Form>
+                    <Form unstackable>
+                    <Form.Field
+                        id = 'disease'
+                        name='disease'
+                        control={Input}
+                        label='Disease/Injury'
+                        placeholder='Disease/Injury'
+                        value = {this.state.disease}
+                        onChange = {this.handleChange}
+                        required='required'/>
+
                         <Form.Field
-                        id = 'description'
-                        name='description'
+                        id = 'remark'
+                        name='remark'
                         control={TextArea}
                         label='Description'
                         placeholder='Description'
-                        value = {this.state.description}
+                        value = {this.state.remark}
                         onChange = {this.handleChange}
                         required='required'/>
+
+                        <Form.Group widths="equal">
+                         <Form.Field
+                         className="mb-3"
+                        id = 'bp'
+                        name='bp'
+                        control={Input}
+                        label='Blood Pressure'
+                        placeholder='Blood Pressure'
+                        value = {this.state.bp}
+                        onChange = {this.handleChange}
+                       />
+
+                       <label>Next Appointment Date
+                        <input
+                             className="mb-3"
+                            id='nextdate'
+                            name="nextdate"
+                            type="date"
+                            placeholder='dd-mm-yyyy'
+                            value={this.state.nextdate}
+                            onChange={this.handleChange} />
+                        </label>
+                        </Form.Group>
+
+                        <div className="mb-3" onChange={this.handleRadio}>
+                            <label className="mb-2">Report Type </label>
+                            <input type="radio" value="Pathology Report" name="condition" /> Pathology Report &nbsp;
+                            <input type="radio" value="Consultation" name="condition" /> Consultation &nbsp;
+                            <input type="radio" value="Operative Report (OP)" name="condition" /> Operative Report (OP) &nbsp;
+                            <input type="radio" value="Discharge Summary (DS)" name="condition" /> Discharge Summary (DS) &nbsp;
+                            <input type="radio" value="Radiology Report" name="condition" /> Radiology Report &nbsp;     
+                        </div>
 
                         <div>
                             <input type="file" onChange={this.onFileChange} required/>
                         </div>
                         <br />
                         <div style={{textAlign:"center"}}>
-                        <Button type='submit' color='green' onClick={this.handleSubmit} disabled={!this.isFormValid()} loading ={this.state.loading}>Submit</Button>
-                        &nbsp; &nbsp; &nbsp;
+                        <Button className="mr-5 mb-2" type='submit' color='green' onClick={this.handleSubmit} disabled={!this.isFormValid()} loading ={this.state.loading}>Submit</Button>
+                        
                         <Link to = {
                                                     { 
                                                         pathname: "/viewtodoctor",
                                                         myCustomProps: {value:this.state.value}
                                                     }
                                                 }>
-                    <Button primary onClick={this.handleSubmitShow} >Previos Record</Button>
+                    <Button primary className="mr-5 mb-2" onClick={this.handleSubmitShow} >Previos Record</Button>
                     
                     </Link>
+                    <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
                     </div>
                     </Form>
                 </div>
@@ -201,6 +251,7 @@ class AddPatientData extends Component {
             this.setState({rw: <TiTick size="2em"/>})
         }
         this.setState({sloading:false})
+        window.scrollTo(0, 700);
       }
       handleChange(event) {
         const target = event.target;
@@ -210,6 +261,7 @@ class AddPatientData extends Component {
         this.setState({
           [name]: value
         });
+        console.log(value)
       }
       handleChangeSearch(event) {
         this.setState({value: event.target.value});
@@ -227,7 +279,10 @@ class AddPatientData extends Component {
     }
       };
 
-
+      handleRadio(event) {
+        console.log(event.target.value);
+        this.setState({condition: event.target.value})
+      }
 
       async handleSubmit(event) {
         event.preventDefault();
@@ -241,12 +296,23 @@ class AddPatientData extends Component {
         this.state.selectedFile
       );
     
-      if(this.state.description==='' && this.state.selectedFile===null){
+      if(this.state.remark==='' && this.state.selectedFile===null){
           alert("Please enter the File and Description")
       }
       // Details of the uploaded file
-      console.log(this.state.selectedFile);
-         console.log(this.state.description)
+        //  console.log(this.state.selectedFile);
+        //  console.log(this.state.remark)
+        //  console.log(this.state.disease)
+        //  console.log(this.state.bp)
+        //  console.log(this.state.nextdate)
+        //  console.log(this.state.condition)
+          
+        let description = this.state.disease +"$"+ this.state.remark +"$"+ this.state.bp +"$"+ this.state.nextdate +"$"+ this.state.condition;
+        console.log(description)
+        console.log(this.state.selectedFile)
+        
+        
+
 
          try{
           const ipfsUpload =  await ipfs.files.add(this.state.selectedFile)
@@ -258,7 +324,7 @@ class AddPatientData extends Component {
           console.log(2);
           console.log(doctor);
           await doctor.methods.addPatientRecord(
-            this.state.description,
+            description,
             hash,
             this.state.pCAddr
           ).send({
@@ -271,20 +337,24 @@ class AddPatientData extends Component {
         }
        
          this.setState({
-           description:'',
+            disease: '',
+           remark:'',
            selectedFile: null,
+           condition:'',
+           bp:'',
+           nextdate:'',
            loading:false
          });
       }
     
       isFormValid = () => {
         const {
-            description,
+            remark,
             selectedFile,
          } =  this.state
       
          console.log("in button");
-        return description && selectedFile
+        return remark && selectedFile
        }  
 
        isSearchValid = () => {
@@ -303,23 +373,34 @@ class AddPatientData extends Component {
             viewCond = this.viewHtml()
         }
         return (
+            <div>
             <div className="add-patient-main">
-            
-                <h1 className="greet">Welcome, hope you are good !!!</h1>
-                <InputGroup className="mb-4">
-                    <FormControl
-                    placeholder="Enter Blockchain address"
-                    aria-label="city name"
-                    value = {this.state.value}
-                    onChange = {this.handleChangeSearch}
-                />
-                <InputGroup.Append>
-                    <Button primary onClick={this.handleSubmitSearch} loading ={this.state.sloading}>Search</Button>
-                </InputGroup.Append>
-                </InputGroup>
-                <br/>
-                { viewCond }
-                <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
+
+                <Container fluid>
+                    <Row>
+                        <Col sm={4}><img src={hospital} class="img-fluid" alt="contact-img"/> </Col>
+                        <Col className="py-5 mt-5">
+                            <h1 className="greet" style={{color: 'white', fontSize: '50px'}}>Welcome, hope you are good !!!</h1>
+                            <InputGroup>
+                            <FormControl
+                            className="mb-5"
+                            placeholder="Enter Blockchain address"
+                            aria-label="city name"
+                            value = {this.state.value}
+                            onChange = {this.handleChangeSearch}
+                            />
+                            </InputGroup>
+                            <Button color='yellow' onClick={this.handleSubmitSearch} loading ={this.state.sloading} disabled={!this.isSearchValid()}>Search</Button>
+                            
+                        </Col>
+                    </Row>
+                </Container>
+               
+                
+            </div>
+
+                {viewCond}
+
             </div>
 
         )

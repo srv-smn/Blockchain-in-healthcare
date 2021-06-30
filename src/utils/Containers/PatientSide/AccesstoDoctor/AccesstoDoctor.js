@@ -266,11 +266,11 @@ class AccesstoDoctor extends Component {
             <div className="access-to-doctor-main">
                {htm}
 
-                <div className="access-to-doctor">
-                <div className="container">
+                <div className="access-to-doctor mt-4" style={{height: "45%", padding: "120px", opacity:'90%'}}>
+                <div className="container mt-2 py-3">
                 <Form>
                     <Form.Group >
-                        <Form.Label>Blockchain Address</Form.Label>
+                        <Form.Label>Doctor's Address</Form.Label>
                         <Form.Control 
                             type="text" 
                             placeholder="Blockchain Address"

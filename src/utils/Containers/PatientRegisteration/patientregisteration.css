@@ -2,6 +2,8 @@
     height: 120%;
     padding: 40px;
     background-image: url("b4.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
 }
 .reg-form-pat{
     margin-left: 25%;

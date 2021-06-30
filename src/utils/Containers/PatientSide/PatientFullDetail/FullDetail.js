@@ -135,11 +135,13 @@ class FullDetails extends Component {
 	render() {
 		const paperstyle = {
 			padding: '8px 5px',
-			textAlign: 'center',
+			textAlign: 'left',
 		}
 
 		return (
-			<div className="stages-main">
+			<>
+			<div className="viewdiv"><h1>Patient's History</h1></div>
+			<div className="stages-main-1">
 
 <div class="ui cards container-fluid" >
 
@@ -189,7 +191,7 @@ class FullDetails extends Component {
                 
 
 				<div className="container-fluid">
-					<div className="stages">
+					<div className="stages-1 mt-3">
 						<Timeline align="alternate">
 								{
 									this.state.finalObj.reverse().map((rec,index) =>{
@@ -202,13 +204,20 @@ class FullDetails extends Component {
 											</TimelineSeparator>
 											<TimelineContent>
 												<Paper elevation={3} style={paperstyle}>
-													Date : {rec.date} <br />
-													Details: {rec.details} <br />
-													Doctor: {rec.dName} <br />
-													Doctor ID : {rec.dId} <br />
-													<Button variant="primary" onClick={(event) => this.handleShow(event,rec.hash)} >
-														View Document
-												</Button>
+													<div className="paper-content">
+														<b>Date :</b> {rec.date} <br/><br/>
+														<b>Details : </b>{rec.details.split("$")[0]} <br/><br/>
+														<b>Blood Pressure :</b>{rec.details.split("$")[2]} <br/><br/>
+														<b>Report Type :</b>{rec.details.split("$")[4]} <br/><br/>
+														<b>Next Appointment Date :</b> {rec.details.split("$")[3]} <br/><br/>
+														<b>Doctor :</b> {rec.dName} <br/><br/>
+														<b>Doctor ID :</b> {rec.dId} <br/><br/>
+														<div style={{textAlign:'center'}}>	
+														<Button variant="primary" onClick={(event) => this.handleShow(event,rec.hash)} >
+															View Document
+													</Button>
+													</div>
+												</div>
 												</Paper>
 											</TimelineContent>
 										</TimelineItem>
@@ -235,6 +244,7 @@ class FullDetails extends Component {
 					</div>
 				</div>
 			</div>
+			</>
 		);
 	}
 }

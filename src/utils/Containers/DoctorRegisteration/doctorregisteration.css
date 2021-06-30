@@ -2,6 +2,8 @@
   height: 100%;
   padding: 50px;
   background-image: url("b4.jpg");
+  background-repeat:no-repeat;
+  background-size: cover;
 }
 
 .App {

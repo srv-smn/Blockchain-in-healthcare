@@ -45,8 +45,10 @@ const patientDetails = async (address) =>{
     const nme = await patient.methods.name().call();
     const mno = await patient.methods.mno().call();
     const bg = await patient.methods.bg().call();
+    const age = await patient.methods.age().call();
+    console.log("---------------- log ----------------",age);
 
-    return {nme,mno,bg} 
+    return {nme,mno,bg,age} 
 }
 
 const rwAccess = async (addressP, addressD) =>{

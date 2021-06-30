@@ -1,6 +1,6 @@
 import React from 'react'
 import './patientregisteration.css'
-import { Form, Input, Button,Message } from 'semantic-ui-react'
+import { Form, Input, Button,Message,Container } from 'semantic-ui-react'
 import web3 from '../../../ethereum/web3'
 import Admin from '../../../ethereum/Admin'
 
@@ -55,6 +55,7 @@ class PatientRegisteration extends React.Component {
 
     const patient = await Admin.methods.addPatient(
       this.state.name,
+      this.state.dob,
       this.state.adharno,
       this.state.selectBloodgrp,
       this.state.mobno,
@@ -137,7 +138,7 @@ class PatientRegisteration extends React.Component {
                 <option value="O-">O-</option>
               </select>
             </label>
-
+            &nbsp;&nbsp;&nbsp;
             <div className="fieldcss">
               <label>Date of Birth
             <input
@@ -238,11 +239,13 @@ class PatientRegisteration extends React.Component {
             />
           </Form.Group>
           <br />
-          <Button primary onClick = {this.handleSubmit} disabled={!this.isFormValid()} loading ={this.state.loading} > Submit</Button>
-          
+          <div style={{textAlign:"center"}}>
+          <Button primary onClick = {this.handleSubmit}  disabled={!this.isFormValid()} loading ={this.state.loading} > Submit</Button>
+          </div>
         </Form>
+        <Container style={{textAlign:"center", marginTop:'20px'}}>
         <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
-        
+     </Container>
       </div>
     )
   }

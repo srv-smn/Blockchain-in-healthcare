@@ -6,7 +6,7 @@ import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import { Paper } from '@material-ui/core';
-import { FaUser, FaAddressCard, FaNotesMedical, FaKey } from 'react-icons/fa'
+import { FaUser,FaAddressCard,FaNotesMedical, FaBirthdayCake } from 'react-icons/fa'
 import './patienthistory.css'
 import web3 from '../../../../ethereum/web3'
 import Admin from '../../../../ethereum/Admin'
@@ -57,7 +57,7 @@ class FullDetails extends Component {
 		}
 		else {
 			const pAddr = await addToPatients(accounts[0])
-			const { nme, mno, bg } = await patientDetails(pAddr)
+			const { nme, mno, bg,age } = await patientDetails(pAddr)
 
 			const patient = await connectToPatients(pAddr)
 			
@@ -112,7 +112,8 @@ class FullDetails extends Component {
 				bg,
 				account: accounts[0],
 				record,
-				finalObj: temp
+				finalObj: temp,
+				age
 			})
 
 
@@ -134,40 +135,63 @@ class FullDetails extends Component {
 	render() {
 		const paperstyle = {
 			padding: '8px 5px',
-			textAlign: 'center',
+			textAlign: 'left',
 		}
 
 		return (
-			<div className="stages-main">
+			<>
+			<div className="viewdiv"><h1>Patient's History</h1></div>
+			<div className="stages-main-1">
 
-				<div class="container">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="card-counter primary">
-								<FaUser className='fa-icons' />
-								<span class="count-name">{this.state.nme}</span>
-							</div>
-						</div>
+<div class="ui cards container-fluid" >
 
-						<div class="col-md-4">
-							<div class="card-counter success">
-								<FaAddressCard className='fa-icons' />
-								<span class="count-name">{this.state.mno}</span>
-							</div>
-						</div>
+              <div className="card doc-card mr-3">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-4 doc-detail-1"><FaUser size='4em' color='white' className="faicons"/></div>
+                            <div className="col-8 doc-card-content">
+                                <h2>{this.state.nme}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="card doc-card">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-4 doc-detail-2"><FaAddressCard size='4em' color='white' className="faicons"/></div>
+                            <div className="col-8 doc-card-content">
+                                <h4>{this.state.mno}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-						<div class="col-md-4">
-							<div class="card-counter danger">
-								<FaNotesMedical className='fa-icons' />
-								<span class="count-name">{this.state.bg}</span>
-							</div>
-						</div>
+				<div className="card doc-card">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-4 doc-detail-4"><FaBirthdayCake size='4em' color='white' className="faicons"/></div>
+                            <div className="col-8 doc-card-content">
+                                <h4>{this.state.age}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-					</div>
-				</div>
+                <div className="card doc-card">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-4 doc-detail-3"><FaNotesMedical size='4em' color='white' className="faicons"/></div>
+                            <div className="col-8 doc-card-content">
+                            <h4>Blood Group: {this.state.bg}</h4></div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			
+                
 
-				<div className="container">
-					<div className="stages">
+				<div className="container-fluid">
+					<div className="stages-1 mt-3">
 						<Timeline align="alternate">
 								{
 									this.state.finalObj.reverse().map((rec,index) =>{
@@ -180,13 +204,20 @@ class FullDetails extends Component {
 											</TimelineSeparator>
 											<TimelineContent>
 												<Paper elevation={3} style={paperstyle}>
-													Date : {rec.date} <br />
-													Details: {rec.details} <br />
-													Doctor: {rec.dName} <br />
-													Doctor ID : {rec.dId} <br />
-													<Button variant="primary" onClick={(event) => this.handleShow(event,rec.hash)} >
-														Launch demo modal
-												</Button>
+													<div className="paper-content">
+														<b>Date :</b> {rec.date} <br/><br/>
+														<b>Details : </b>{rec.details.split("$")[0]} <br/><br/>
+														<b>Blood Pressure :</b>{rec.details.split("$")[2]} <br/><br/>
+														<b>Report Type :</b>{rec.details.split("$")[4]} <br/><br/>
+														<b>Next Appointment Date :</b> {rec.details.split("$")[3]} <br/><br/>
+														<b>Doctor :</b> {rec.dName} <br/><br/>
+														<b>Doctor ID :</b> {rec.dId} <br/><br/>
+														<div style={{textAlign:'center'}}>	
+														<Button variant="primary" onClick={(event) => this.handleShow(event,rec.hash)} >
+															View Document
+													</Button>
+													</div>
+												</div>
 												</Paper>
 											</TimelineContent>
 										</TimelineItem>
@@ -213,6 +244,7 @@ class FullDetails extends Component {
 					</div>
 				</div>
 			</div>
+			</>
 		);
 	}
 }

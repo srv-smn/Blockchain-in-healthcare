@@ -1,33 +1,39 @@
 .add-patient-main{
     height: 100%;
-    padding: 70px;
-    background-color: #ebf8fc;
+    padding: 100px;
+    background-color: #654062;
+   /* background-image: url('../../../assets/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;*/
 }
+
 .ui icon input{
     cursor: pointer  !important;
 }
 .greet{
     text-align: left;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     font-size: 40px
 }
 .detail-1{
-    background-color: #7de2fc !important;
-    background-image: linear-gradient(315deg, #7de2fc 0%, #1ebbe2 74%) !important;
+    background-color: #63d471;
+    background-image: linear-gradient(315deg, #63d471 0%, #233329 74%);
     width: 100%;
     height: 150px; 
     box-shadow: 0 0 10px 1px #e6e5e5 !important;
 }
 .detail-2{
-    background-color: #fce622 !important;
-    background-image: linear-gradient(315deg, #eef867 0%, #fce622 74%) !important;
+    background-color: #6b0f1a;
+    background-image: linear-gradient(315deg, #6b0f1a 0%, #b91372 74%);
+    
     width: 100%;
     height: 150px;
     box-shadow: 0 0 10px 1px #e6e5e5 !important;
 }
 .detail-3{
-    background-color: #fa3c3c !important;
-    background-image: linear-gradient(315deg, #fa3c3c 0%, #e60606 74%) !important;
+    background-color: #f7b42c;
+    background-image: linear-gradient(315deg, #f7b42c 0%, #fc575e 74%);
+
     width: 100%;
     height: 150px;
     box-shadow: 0 0 10px 1px #e5e6e6 !important;
@@ -43,10 +49,13 @@
 .patient-form{
     background-color: white;
     padding: 20px;
-    margin-top: 30px;
-    border-radius: 5px;
+    margin-top: 50px;
+    border-radius: 10px;
     height: auto;
-    box-shadow: 0 0 10px 1px #e6e5e5 !important
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 33%);
+}
+.patient-form:hover{
+    box-shadow: 0px 5px 25px 0px rgb(0 0 0 / 20%);
 }
 .access-1{
     background-color: #89d8d3 !important;
@@ -70,4 +79,44 @@
       text-align: left;
       font-weight: bold
   }
+
+  .view-elements{
+    height: 100%;
+    padding: 100px;
+    background-color: #ecf0f4
+  }
   
+  ::-webkit-file-upload-button {
+    background: #FFCC00;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+  }
+  ::-webkit-file-upload-button:hover{
+    background: rgb(216, 173, 3);
+  }
+
+  @media only screen and (max-width: 450px) {
+    .add-patient-main{
+        height: 100%;
+        padding: 20px;
+        background-color: #654062;
+    }
+  .card-content {
+    margin-top: 50px;
+    padding: 5px;
+    font-size: 10px !important
+    }
+    .faicons{
+        margin-top: 40px;
+        padding: 10px !important;
+        margin-left: -10px;
+    }
+    .view-elements{
+        height: 100%;
+        padding: 50px;
+        background-color: #ecf0f4;
+      }
+
+  }

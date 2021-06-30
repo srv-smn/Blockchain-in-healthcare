@@ -6,7 +6,7 @@ import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import { Paper } from '@material-ui/core';
-import { FaUser, FaAddressCard, FaNotesMedical, FaKey } from 'react-icons/fa'
+import { FaUser, FaAddressCard, FaNotesMedical } from 'react-icons/fa'
 import './viewToDoctor.css'
 import web3 from '../../../ethereum/web3'
 import Admin from '../../../ethereum/Admin'
@@ -17,7 +17,6 @@ import {
 	connectToDoctor,
 	addToPatients,
 	patientDetails,
-	rwAccess
 } from '../../Eth/Ethutil'
 
 
@@ -34,7 +33,7 @@ class viewToDoctor extends Component {
 			record: [],
 			finalObj: [],
 			show: false,
-			url:''
+			url: ''
 		}
 
 
@@ -44,15 +43,16 @@ class viewToDoctor extends Component {
 	}
 
 	handleClose = () => this.setState({ show: false })
-	handleShow = (event,hash) => {
+	handleShow = (event, hash) => {
 		event.preventDefault()
-		const url = 'https://ipfs.io/ipfs/'+ hash
-		this.setState({ show: true , url})}
+		const url = 'https://ipfs.io/ipfs/' + hash
+		this.setState({ show: true, url })
+	}
 
 	async componentDidMount() {
 		const accounts = await web3.eth.getAccounts();
-        const pId = this.props.location.myCustomProps.value
-		
+		const pId = this.props.location.myCustomProps.value
+
 		const pExist = await Admin.methods.existP(pId).call()
 		if (!pExist) {
 			alert("Patients does not exist on this address");
@@ -62,7 +62,7 @@ class viewToDoctor extends Component {
 			const { nme, mno, bg } = await patientDetails(pAddr)
 
 			const patient = await connectToPatients(pAddr)
-			
+
 			const len = await patient.methods.getLength().call({
 				from: accounts[0]
 			})
@@ -80,14 +80,14 @@ class viewToDoctor extends Component {
 					detail: temp[2],
 					hash: temp[3]
 				}
-				
+
 				record.push(obj)
 
 			}
 
 
 			let temp = []
-			
+
 			for (let i = 0; i < len; i++) {
 
 				const doctor = await connectToDoctor(record[i].doctor);
@@ -103,10 +103,10 @@ class viewToDoctor extends Component {
 					dId,
 					date,
 					details: record[i].detail,
-					hash:record[i].hash,
+					hash: record[i].hash,
 				}
-				  temp =  [...temp, obj]
-				
+				temp = [...temp, obj]
+
 			}
 			this.setState({
 				nme,
@@ -129,92 +129,111 @@ class viewToDoctor extends Component {
 		return arr[0]
 	}
 
-	toHtm(){
-		
+	toHtm() {
+
 	}
 
 	render() {
 		const paperstyle = {
-			padding: '8px 5px',
-			textAlign: 'center',
+			padding: '15px 6px',
+			textAlign: 'left',
+			height: '330px'
 		}
 
 		return (
+			<>
+			<div className="viewdiv"><h1>Patient's History</h1></div>
 			<div className="stages-main">
+				
+				<div class="ui cards container" >
 
-				<div class="container">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="card-counter primary">
-								<FaUser className='fa-icons' />
-								<span class="count-name">{this.state.nme}</span>
+					<div className="card doc-card mr-5 ml-5">
+						<div className="container">
+							<div className="row">
+								<div className="col-4 doc-details-1"><FaUser size='4em' color='white' className="faicons" /></div>
+								<div className="col-8 doc-card-content">
+									<h2>{this.state.nme}</h2>
+								</div>
 							</div>
 						</div>
-
-						<div class="col-md-4">
-							<div class="card-counter success">
-								<FaAddressCard className='fa-icons' />
-								<span class="count-name">{this.state.mno}</span>
-							</div>
-						</div>
-
-						<div class="col-md-4">
-							<div class="card-counter danger">
-								<FaNotesMedical className='fa-icons' />
-								<span class="count-name">{this.state.bg}</span>
-							</div>
-						</div>
-
 					</div>
+					<div className="card doc-card mr-5 ml-5">
+						<div className="container">
+							<div className="row">
+								<div className="col-4 doc-detail-2"><FaAddressCard size='4em' color='white' className="faicons" /></div>
+								<div className="col-8 doc-card-content">
+									<h4>{this.state.mno}</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="card doc-card mr-5 ml-5">
+						<div className="container">
+							<div className="row">
+								<div className="col-4 doc-details-3"><FaNotesMedical size='4em' color='white' className="faicons" /></div>
+								<div className="col-8 doc-card-content">
+									<h4>Blood Group: {this.state.bg}</h4></div>
+							</div>
+						</div>
+					</div>
+
 				</div>
 
 				<div className="container">
-					<div className="stages">
+				
+					<div className="card mt-4 py-3 stages">
 						<Timeline align="alternate">
-								{
-									this.state.finalObj.map((rec,index) =>{
-										console.log(rec);
-										return(
-											<TimelineItem key ={index}>
+							{
+								this.state.finalObj.map((rec, index) => {
+									console.log(rec);
+									return (
+										<TimelineItem key={index}>
 											<TimelineSeparator>
 												<TimelineDot color="primary" />
 												<TimelineConnector />
 											</TimelineSeparator>
 											<TimelineContent>
 												<Paper elevation={3} style={paperstyle}>
-													Date : {rec.date} <br />
-													Details: {rec.details} <br />
-													Doctor: {rec.dName} <br />
-													Doctor ID : {rec.dId} <br />
-													<Button variant="primary" onClick={(event) => this.handleShow(event,rec.hash)} >
-														Launch demo modal
+														<b>Date :</b> {rec.date} <br/><br/>
+														<b>Details : </b>{rec.details.split("$")[0]} <br/><br/>
+														<b>Blood Pressure :</b>{rec.details.split("$")[2]} <br/><br/>
+														<b>Report Type :</b>{rec.details.split("$")[4]} <br/><br/>
+														<b>Next Appointment Date :</b> {rec.details.split("$")[3]} <br/><br/>
+														<b>Doctor :</b> {rec.dName} <br/><br/>
+														<b>Doctor ID :</b> {rec.dId} <br/><br/>
+													<div style={{textAlign:'center'}}>	
+													<Button variant="primary" onClick={(event) => this.handleShow(event, rec.hash)} >
+														View Document
 												</Button>
+												</div>
 												</Paper>
 											</TimelineContent>
 										</TimelineItem>
-			
-										)
-									})
-								}
-								<Modal show={this.state.show} onHide={this.handleClose} size='lg'>
-														<Modal.Header closeButton>
-															<Modal.Title>PRESCRIPTION</Modal.Title>
-														</Modal.Header>
-														<Modal.Body>
-															<iframe src={this.state.url} style={{ width: '500%', height: '500px' }} className='img-fluid' frameBorder="0"></iframe>
-														</Modal.Body>
-														<Modal.Footer>
-															<Button variant="secondary" onClick={this.handleClose}>
-																Close
+
+									)
+								})
+							}
+							<Modal show={this.state.show} onHide={this.handleClose} size='lg'>
+								<Modal.Header closeButton>
+									<Modal.Title>PRESCRIPTION</Modal.Title>
+								</Modal.Header>
+								<Modal.Body>
+									<iframe src={this.state.url} style={{ width: '500%', height: '500px' }} className='img-fluid' frameBorder="0"></iframe>
+								</Modal.Body>
+								<Modal.Footer>
+									<Button variant="secondary" onClick={this.handleClose}>
+										Close
 													 </Button>
-			
-														</Modal.Footer>
-													</Modal>
+
+								</Modal.Footer>
+							</Modal>
 
 						</Timeline>
 					</div>
 				</div>
 			</div>
+			</>
 		);
 	}
 }

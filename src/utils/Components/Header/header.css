@@ -2,3 +2,8 @@
     background-color: black !important;
     padding: 10px;
 }
+.nav-link:hover{
+    font-size: 24px;
+    color: white;
+    
+}

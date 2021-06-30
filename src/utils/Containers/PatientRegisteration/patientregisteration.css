@@ -1,6 +1,9 @@
 .main-reg-form-pat{
     height: 120%;
-    padding: 40px
+    padding: 40px;
+    background-image: url("b4.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
 }
 .reg-form-pat{
     margin-left: 25%;
@@ -8,4 +11,23 @@
     padding: 20px;
     background-color: white;
     box-shadow: 0 0 10px 1px rgb(202, 202, 202);
+    /* background-image: url("nn.jpg"); */
+    border-radius: 3%;
+    box-sizing: inherit;
 }
+@media only screen and (max-width: 600px) {
+    /* For mobile phones: */
+    .fieldcss{
+        margin-top:15px;
+        width: 60%;
+        margin-bottom: 10px;
+        
+    }
+    .reg-form-pat{
+        margin-left: 10%;
+        margin-right:10%;
+        padding: 20px;
+        background-color: none;
+        box-shadow: none !important;
+    }   
+  }

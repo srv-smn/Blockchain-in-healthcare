@@ -287,6 +287,7 @@ pragma experimental ABIEncoderV2;
 contract Patient {
     // Patient basic details
     string public name;
+    string public age;
     string kyc;
     string public bg;
     string public mno;
@@ -312,6 +313,7 @@ contract Patient {
 
     constructor(
         string memory _name,
+        string memory _age,
         string memory _kyc,
         string memory _bg,
         string memory _mno,
@@ -325,6 +327,7 @@ contract Patient {
         bg = _bg;
         mno = _mno;
         owner = _owner;
+        age = _age;
         viewers[owner] = true;
     }
 
@@ -401,13 +404,12 @@ contract Patient {
     {
         require(admin.existDA(msg.sender), "You are not a registered Doctor");
 
-        record memory newRecord =
-            record({
-                date: block.timestamp,
-                doctor: msg.sender,
-                detail: _detail,
-                hash: _hash
-            });
+        record memory newRecord = record({
+            date: block.timestamp,
+            doctor: msg.sender,
+            detail: _detail,
+            hash: _hash
+        });
         editors[msg.sender] = false;
         viewers[msg.sender] = false;
         details.push(newRecord);
@@ -488,13 +490,12 @@ contract Doctor {
         Patient patientContract = Patient(_patient);
         patientContract.addReport(_details, _hash);
 
-        patientRecord memory precord =
-            patientRecord({
-                date: block.timestamp,
-                patient: _patient,
-                detail: _details,
-                hash: _hash
-            });
+        patientRecord memory precord = patientRecord({
+            date: block.timestamp,
+            patient: _patient,
+            detail: _details,
+            hash: _hash
+        });
         patients.push(precord);
     }
 }
@@ -541,14 +542,22 @@ contract Admin {
 
     function addPatient(
         string memory _name,
+        string memory _age,
         string memory _kyc,
         string memory _bg,
         string memory _mno,
         address _owner
     ) public onlyOwner {
         require(!existP[_owner], "Account Already Exixt");
-        Patient newPatient =
-            new Patient(_name, _kyc, _bg, _mno, _owner, address(this));
+        Patient newPatient = new Patient(
+            _name,
+            _age,
+            _kyc,
+            _bg,
+            _mno,
+            _owner,
+            address(this)
+        );
         patients[_owner] = address(newPatient);
         existP[_owner] = true;
     }

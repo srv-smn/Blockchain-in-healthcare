@@ -101,10 +101,10 @@ class AccesstoDoctor extends Component {
             let{read,write} =  await rwAccess(this.state.account, this.state.value)
             let r = read
             let rw = write
-            if(r==true){
+            if(r===true){
                 this.setState({r: <TiTick size="2em"/>})
             }
-            if(rw==true){
+            if(rw===true){
                 this.setState({rw: <TiTick size="2em"/>})
             }
             this.setState({
@@ -259,18 +259,18 @@ class AccesstoDoctor extends Component {
 
     render() {
         let htm = null
-        if(this.state.count != 0){
+        if(this.state.count !== 0){
             htm = this.readHTM()
         }
         return (
             <div className="access-to-doctor-main">
                {htm}
 
-                <div className="access-to-doctor">
-                <div className="container">
+                <div className="access-to-doctor mt-4" style={{height: "45%", padding: "120px", opacity:'90%'}}>
+                <div className="container mt-2 py-3">
                 <Form>
                     <Form.Group >
-                        <Form.Label>Blockchain Address</Form.Label>
+                        <Form.Label>Doctor's Address</Form.Label>
                         <Form.Control 
                             type="text" 
                             placeholder="Blockchain Address"
@@ -278,11 +278,13 @@ class AccesstoDoctor extends Component {
                             onChange = {this.handleChange} />
                     </Form.Group>
                 </Form>  
+                <div style={{textAlign:"center"}}>
                 <Button primary className="py-3 btns" onClick={this.handleSubmitSearch} disabled={!this.isSearchValid()} loading ={this.state.loading}> Search <FaSearchPlus color = "white"/> </Button>
-                <Button color='green' className="py-3 btns" onClick={this.handleSubmitView} disabled={this.state.disabled} loading ={this.state.avloading}>Add View</Button>
-                <Button color='green' className="py-3 btns" onClick={this.handleSubmitWrite} disabled={this.state.disabled} loading ={this.state.awloading}> Add Write</Button>  
-                <Button color='red' className="py-3 btns" onClick={this.handleSubmitRemoveView} disabled={this.state.disabled} loading ={this.state.rvloading}>Remove View</Button>
-                <Button color='red' className="py-3 " onClick={this.handleSubmitRemoveWrite} disabled={this.state.disabled} loading ={this.state.rwloading}>Remove Write</Button>
+                <Button color='green' className="mb-2 py-3 btns" onClick={this.handleSubmitView} disabled={this.state.disabled} loading ={this.state.avloading}>Add View</Button>
+                <Button color='green' className="mb-2 py-3 btns" onClick={this.handleSubmitWrite} disabled={this.state.disabled} loading ={this.state.awloading}> Add Write</Button>  
+                <Button color='red' className="mb-2 py-3 btns" onClick={this.handleSubmitRemoveView} disabled={this.state.disabled} loading ={this.state.rvloading}>Remove View</Button>
+                <Button color='red' className="mb-2 py-3 btns" onClick={this.handleSubmitRemoveWrite} disabled={this.state.disabled} loading ={this.state.rwloading}>Remove Write</Button>
+                </div>
                 </div> 
                 </div> 
                 <Message error header="Oops!" content={this.state.errorMessage} hidden = {this.state.hidden}  negetive compact/>
